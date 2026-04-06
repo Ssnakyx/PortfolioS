@@ -7,6 +7,7 @@ import main3 from './assets/main3.mp4'
 import P3Menu from './P3Menu'
 import VideoPage from './VideoPage'
 import PageTransition from './PageTransition'
+import Socials from './Socials'
 import './App.css'
 
 function MenuScreen() {
@@ -34,7 +35,7 @@ function AnimatedRoutes() {
           <PageTransition><VideoPage src={main2} /></PageTransition>
         } />
         <Route path="/socials" element={
-          <PageTransition><VideoPage src={main3} /></PageTransition>
+          <PageTransition><Socials /></PageTransition>
         } />
       </Routes>
     </AnimatePresence>

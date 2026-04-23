@@ -12,6 +12,7 @@ import Socials from './Socials'
 import AboutMe from './AboutMe'
 import './App.css'
 
+
 function MenuScreen() {
   const navigate = useNavigate()
   return (

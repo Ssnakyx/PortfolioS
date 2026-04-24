@@ -377,8 +377,8 @@ export default function AboutMe() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: top right;
-          transform: skewX(8deg) scale(1.08);
+          object-position: center;
+          transform: skewX(8deg) scale(1.02);
           transform-origin: top right;
         }
 

@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Videos (hosted on Cloudinary)
+src/assets/*.mp4
+src/assets/*.mov
+src/assets/*.webm
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

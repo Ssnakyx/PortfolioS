@@ -16,22 +16,22 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["name: hamed kaffa", "age: 23"],
-    lower: "major: computer science",
+    upper: ["name: hamed kaffa", "age: 23", "formation: informatique", "statut: disponible — avr'26"],
+    lower: "développeur full-stack",
   },
   {
     upper: [
-      "Full-stack developer focused on Vue.js and modern web tech.",
-      "I build fast, modern websites that help businesses grow.",
-      "Available for freelance projects — avr'26.",
+      "passionné par la création d'expériences digitales modernes et performantes.",
+      "je travaille avec vue.js, react et les technos web modernes.",
+      "je transforme des idées en produits fiables et agréables à utiliser.",
     ],
-    lower: "passion: crafting digital experiences",
+    lower: "github: ssnakyx  •  email: hamed0405n@gmail.com",
   },
   {
     upper: [
-      "I once spent 3 hours perfecting a CSS animation 99% of users won't notice.",
-      "Strong opinions on transition durations — it's 150ms, obviously.",
-      "My commit messages are cleaner than my explanations.",
+      "i once spent 3 hours on a css animation 99% of users won't notice.",
+      "strong opinions on transition durations — it's 150ms, obviously.",
+      "my commit messages are cleaner than my explanations.",
     ],
     lower: "fun facts about the dev",
   },
@@ -80,14 +80,11 @@ export default function AboutMe() {
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
   const handleBarClick = (index) => {
-    if (isMobileViewport && active === index) {
+    if (active === index) {
       setRevealed((prev) => !prev);
-      return;
-    }
-
-    setActive(index);
-    if (isMobileViewport) {
-      setRevealed(false);
+    } else {
+      setActive(index);
+      setRevealed(true);
     }
   };
 

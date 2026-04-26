@@ -10,6 +10,7 @@ import ResumePage from './ResumePage'
 import PageTransition from './PageTransition'
 import Socials from './Socials'
 import AboutMe from './AboutMe'
+import SideProjPage from './SideProjPage'
 import './App.css'
 
 
@@ -39,6 +40,9 @@ function AnimatedRoutes() {
         } />
         <Route path="/socials" element={
           <PageTransition variant="socials"><Socials /></PageTransition>
+        } />
+        <Route path="/sideproj" element={
+          <PageTransition><SideProjPage /></PageTransition>
         } />
       </Routes>
     </AnimatePresence>

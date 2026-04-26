@@ -80,8 +80,8 @@ export default function AboutMe() {
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
   const handleBarClick = (index) => {
-    if (active === index) {
-      setRevealed((prev) => !prev);
+    if (revealed && active === index) {
+      setRevealed(false);
     } else {
       setActive(index);
       setRevealed(true);
@@ -766,7 +766,7 @@ export default function AboutMe() {
               handleBarClick(i);
             }}
             onMouseEnter={() => {
-              setActive(i);
+              if (!revealed) setActive(i);
             }}
           >
             <div className="sc-bar-red" />

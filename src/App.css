@@ -26,6 +26,12 @@ body {
   object-position: center center;
 }
 
+@media (max-width: 768px) and (orientation: portrait) {
+  #menu-screen video {
+    object-position: 20% center;
+  }
+}
+
 #main {
   width: 100vw;
   height: 100vh;

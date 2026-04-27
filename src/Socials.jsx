@@ -552,6 +552,10 @@ export default function Socials() {
           min-width: 84px;
         }
 
+        .sc-mobile-portrait {
+          display: none;
+        }
+
         @media (max-width: 768px) {
           .sc-root {
             justify-content: flex-start;
@@ -611,6 +615,21 @@ export default function Socials() {
             justify-content: space-between;
             gap: 8px;
             pointer-events: all;
+          }
+
+          .sc-mobile-portrait {
+            display: block;
+            position: fixed;
+            right: -8vw;
+            top: 0;
+            bottom: 0;
+            width: 52vw;
+            object-fit: cover;
+            object-position: top center;
+            z-index: 5;
+            pointer-events: none;
+            mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
           }
         }
       `}</style>
@@ -704,6 +723,13 @@ export default function Socials() {
         <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>OPEN</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
       </div>
+
+      <img
+        className="sc-mobile-portrait"
+        src={CHARS[active]}
+        alt=""
+        key={active}
+      />
 
       <div className="sc-mobile-controls" aria-label="Socials mobile controls">
         <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>

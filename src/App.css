@@ -12,6 +12,7 @@ body {
 #menu-screen {
   position: relative;
   width: 100vw;
+  height: 100vh;
   height: 100dvh;
   overflow: hidden;
 }
@@ -22,10 +23,12 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 
 #main {
   width: 100vw;
+  height: 100vh;
   height: 100dvh;
 }
 
@@ -33,6 +36,7 @@ body {
 @media (max-width: 1024px) {
   #menu-screen,
   #main {
+    height: 100vh;
     height: 100dvh;
   }
 

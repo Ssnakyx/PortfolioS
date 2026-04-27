@@ -368,7 +368,7 @@ export default function Socials() {
         }
         .sc-right-nav .sc-nav-btn {
           font-family: 'Bebas Neue', sans-serif;
-          font-size: 100px;
+          font-size: clamp(36px, 5vw, 100px);
           letter-spacing: 3px;
           line-height: 1;
           user-select: none;
@@ -555,23 +555,16 @@ export default function Socials() {
         @media (max-width: 768px) {
           .sc-root {
             justify-content: flex-start;
-            padding-top: 10px;
-            gap: 3px;
+            padding-top: 16px;
+            gap: 5px;
+          }
+
+          .sc-bar,
+          .sc-bar-red {
+            width: min(80vw, 480px) !important;
           }
 
           .sc-right-nav {
-            top: 8px !important;
-            right: 8px !important;
-            left: auto !important;
-            gap: 2px !important;
-          }
-
-          .sc-right-nav .sc-nav-btn {
-            font-size: clamp(32px, 8vw, 48px) !important;
-            padding: 0 2px !important;
-          }
-
-          .sc-right-nav .sc-nav-label {
             display: none !important;
           }
 
@@ -582,10 +575,11 @@ export default function Socials() {
             right: 8px;
             bottom: 58px;
             height: auto;
-            max-height: 44vh;
+            max-height: 38vh;
             gap: 4px;
             padding: 4px 0;
             overflow-y: auto;
+            pointer-events: all;
           }
 
           .sc-info-bar-wrap {

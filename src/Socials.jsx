@@ -555,21 +555,41 @@ export default function Socials() {
         @media (max-width: 768px) {
           .sc-root {
             justify-content: flex-start;
-            padding-top: 12px;
+            padding-top: 10px;
             gap: 3px;
           }
 
+          .sc-right-nav {
+            top: 8px !important;
+            right: 8px !important;
+            left: auto !important;
+            gap: 2px !important;
+          }
+
+          .sc-right-nav .sc-nav-btn {
+            font-size: clamp(32px, 8vw, 48px) !important;
+            padding: 0 2px !important;
+          }
+
+          .sc-right-nav .sc-nav-label {
+            display: none !important;
+          }
+
           .sc-info-panel {
-            top: min(47vh, 320px);
+            position: fixed;
+            top: auto;
             left: 8px;
             right: 8px;
             bottom: 58px;
+            height: auto;
+            max-height: 44vh;
             gap: 4px;
             padding: 4px 0;
+            overflow-y: auto;
           }
 
           .sc-info-bar-wrap {
-            height: 38px !important;
+            height: 42px !important;
           }
 
           .sc-info-bar-text {

@@ -12,8 +12,7 @@ body {
 #menu-screen {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  min-height: 100dvh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -27,8 +26,7 @@ body {
 
 #main {
   width: 100vw;
-  height: 100vh;
-  min-height: 100dvh;
+  height: 100dvh;
 }
 
 /* Touch-friendly defaults for narrow screens */
@@ -134,12 +132,20 @@ body {
     overscroll-behavior: none;
   }
 
+  a, button, [role="navigation"] a {
+    touch-action: manipulation;
+  }
+
   .p3-menu {
-    transform: scale(0.66);
+    transform: none !important;
+    padding: 0 16px !important;
+    gap: 6px !important;
+    align-items: flex-start !important;
   }
 
   .p3-row {
-    transform-origin: center;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
   }
 
   .p3-name-tag {
@@ -422,7 +428,8 @@ body {
 
 @media (max-width: 430px) {
   .p3-menu {
-    transform: scale(0.54);
+    transform: none !important;
+    padding: 0 10px !important;
   }
 
   .p3-name-tag {

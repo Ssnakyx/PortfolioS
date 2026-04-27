@@ -16,6 +16,8 @@ const CLIP_SHAPES = [
   (w, h) => `polygon(0px 0px, ${w}px ${h * 0.5}px, 0px ${h}px)`,
 ];
 
+const isMobileDevice = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+
 export default function P3Menu({ onNavigate }) {
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -220,6 +222,38 @@ export default function P3Menu({ onNavigate }) {
         .p3-name-tag span:first-child {
           color: rgba(0, 0, 0, 0.86);
         }
+
+        @media (max-width: 768px) {
+          .p3-overlay {
+            align-items: center;
+            justify-content: center;
+          }
+          .p3-menu {
+            width: 100%;
+          }
+          .p3-label-base {
+            font-size: 46px !important;
+            letter-spacing: 1px !important;
+          }
+          .p3-skew-wrap {
+            transform: none !important;
+          }
+          .p3-shadow-tri,
+          .p3-highlight {
+            display: none !important;
+          }
+          .p3-hint-row {
+            font-size: 11px !important;
+            letter-spacing: 1.5px !important;
+          }
+        }
+
+        @media (max-width: 430px) {
+          .p3-label-base {
+            font-size: 38px !important;
+            letter-spacing: 0px !important;
+          }
+        }
       `}</style>
 
       <div className="p3-overlay">
@@ -297,8 +331,14 @@ export default function P3Menu({ onNavigate }) {
         </nav>
 
         <div className={`p3-hint ${mounted ? "mounted" : ""}`}>
-          <div className="p3-hint-row"><span className="p3-hint-key">↑↓</span><span>NAVIGATE</span></div>
-          <div className="p3-hint-row"><span className="p3-hint-key">↵</span><span>CONFIRM</span></div>
+          {isMobileDevice ? (
+            <div className="p3-hint-row"><span>TAP TO SELECT</span></div>
+          ) : (
+            <>
+              <div className="p3-hint-row"><span className="p3-hint-key">↑↓</span><span>NAVIGATE</span></div>
+              <div className="p3-hint-row"><span className="p3-hint-key">↵</span><span>CONFIRM</span></div>
+            </>
+          )}
         </div>
       </div>
     </>

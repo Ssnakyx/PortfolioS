@@ -385,6 +385,42 @@ export default function ResumePage({ src }) {
         }
 
         @media (max-width: 768px) {
+          .resume-overlay {
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            pointer-events: all;
+            padding-bottom: 72px;
+          }
+
+          .resume-stack {
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            padding: 16px 14px 10px !important;
+            pointer-events: all !important;
+          }
+
+          .resume-list-tag {
+            font-size: 56px !important;
+            margin: 0 0 8px 8px !important;
+          }
+
+          .resume-card { height: 86px !important; }
+
+          .resume-title { font-size: 38px !important; }
+
+          .resume-detail-panel {
+            position: relative !important;
+            top: 0 !important;
+            right: 0 !important;
+            width: calc(100% - 28px) !important;
+            min-height: unset !important;
+            margin: 8px 14px 16px !important;
+            pointer-events: all !important;
+          }
+
           .resume-mobile-controls {
             position: fixed;
             left: 8px;

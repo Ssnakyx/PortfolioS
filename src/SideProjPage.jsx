@@ -454,26 +454,47 @@ export default function SideProjPage() {
         }
 
         @media (max-width: 768px) {
+          .sp-overlay {
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            pointer-events: all;
+            padding-bottom: 72px;
+          }
+
           .sp-stack {
-            transform: scale(0.78);
-            top: 4vh;
-            left: 1vw;
-            width: 96vw;
+            position: relative !important;
+            transform: none !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            padding: 16px 14px 10px !important;
+            pointer-events: all !important;
           }
+
           .sp-list-tag {
-            font-size: 64px;
+            font-size: 56px !important;
+            margin: 0 0 8px 8px !important;
           }
-          .sp-card { height: 72px; }
-          .sp-title { font-size: 30px; }
+
+          .sp-card { height: 80px !important; }
+
+          .sp-title { font-size: 28px !important; }
+
           .sp-detail-panel {
-            top: auto;
-            bottom: 70px;
-            left: 8px;
-            right: 8px;
-            width: auto;
-            min-height: unset;
+            position: relative !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: calc(100% - 28px) !important;
+            min-height: unset !important;
+            margin: 8px 14px 16px !important;
+            pointer-events: all !important;
           }
+
           .sp-footer { display: none; }
+
           .sp-mobile-controls {
             position: fixed;
             left: 8px;

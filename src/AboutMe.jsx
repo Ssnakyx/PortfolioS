@@ -644,10 +644,10 @@ export default function AboutMe() {
 
         @media (max-width: 768px) {
           .sc-main-portrait-shell {
-            top: 8vh;
-            right: -9vw;
-            width: 46vw;
-            height: 44vh;
+            top: 0;
+            right: -6vw;
+            width: 50vw;
+            height: 46vh;
             z-index: 13;
           }
 
@@ -657,18 +657,18 @@ export default function AboutMe() {
           }
 
           .sc-reveal-panel {
-            top: 44vh !important;
-            left: 4vw !important;
-            right: 6vw !important;
+            top: 42vh !important;
+            left: 2vw !important;
+            right: 2vw !important;
             width: auto !important;
-            height: 50vh !important;
+            height: 52vh !important;
             z-index: 14;
             transform: translateX(0) rotate(0deg) !important;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
             box-shadow:
               0 0 0 2px rgba(255,255,255,0.24),
-              10px 0 0 rgba(215, 13, 44, 0.9),
-              16px 0 0 rgba(255,255,255,0.24);
+              8px 0 0 rgba(215, 13, 44, 0.9),
+              14px 0 0 rgba(255,255,255,0.2);
           }
 
           .sc-reveal-panel.mounted {
@@ -689,27 +689,27 @@ export default function AboutMe() {
           }
 
           .sc-reveal-upper-bar {
-            top: 10%;
-            height: 46%;
+            top: 8%;
+            height: 48%;
             width: 96%;
             left: 2%;
           }
 
           .sc-reveal-upper-line {
             font-size: 14px;
-            line-height: 1.1;
-            padding: 0 10px;
+            line-height: 1.2;
+            padding: 0 12px;
           }
 
           .sc-reveal-lower-bar {
             top: 62%;
-            width: 88%;
-            bottom: 8%;
+            width: 90%;
+            bottom: 6%;
             height: auto;
             max-height: none;
             font-size: 15px;
-            line-height: 1.2;
-            padding: 8px 12px 8px 12px;
+            line-height: 1.3;
+            padding: 8px 14px;
           }
 
           .sc-right-nav {

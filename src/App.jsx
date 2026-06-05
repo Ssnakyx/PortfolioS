@@ -11,6 +11,8 @@ import PageTransition from './PageTransition'
 import Socials from './Socials'
 import AboutMe from './AboutMe'
 import SideProjPage from './SideProjPage'
+import CustomCursor from './CustomCursor'
+import WelcomeOverlay from './WelcomeOverlay'
 import './App.css'
 
 
@@ -50,5 +52,11 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
-  return <AnimatedRoutes />
+  return (
+    <>
+      <CustomCursor />
+      <WelcomeOverlay />
+      <AnimatedRoutes />
+    </>
+  );
 }

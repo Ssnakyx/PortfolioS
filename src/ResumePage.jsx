@@ -1,23 +1,82 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BackBtn from "./BackBtn";
 
 const ITEMS = [
-  { id: "i", badge: "I", title: "EDUCATION", subtitle: "Computer Science", rank: 4 },
-  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Frontend / Backend / UI", rank: 5 },
-  { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Featured Work", rank: 5 },
-  { id: "iv", badge: "IV", title: "EXPERIENCE", subtitle: "Freelance / Personal", rank: 3 },
+  { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: "Computer Science",     rank: 4 },
+  { id: "ii",  badge: "II",  title: "SKILLS",     subtitle: "Frontend / Backend / UI", rank: 5 },
+  { id: "iii", badge: "III", title: "PROJECTS",   subtitle: "Featured Work",         rank: 5 },
+  { id: "iv",  badge: "IV",  title: "EXPERIENCE", subtitle: "Freelance / Personal",  rank: 3 },
 ];
 
-const EDUCATION_ROWS = [
-  { index: "01", title: "Computer Science", status: "In Progress" },
-  { index: "02", title: "Web Development", status: "Complete" },
-  { index: "03", title: "Frontend Frameworks", status: "Complete" },
-  { index: "04", title: "Backend Basics", status: "Complete" },
+const PANELS = [
+  {
+    topIndex: "01", topTitle: "EDUCATION LOG", topRight: "3/4",
+    rows: [
+      { index: "01", title: "Computer Science", status: "In Progress" },
+      { index: "02", title: "Web Development",  status: "Complete" },
+      { index: "03", title: "Frontend Frameworks", status: "Complete" },
+      { index: "04", title: "Backend Basics",   status: "Complete" },
+    ],
+    bottomTitle: "DETAILS",
+    bullets: [
+      "- Étudiant en informatique, spécialisation développement web.",
+      "- Projets full-stack réalisés en parallèle des études.",
+      "- Disponible pour stages, freelance et collaborations.",
+    ],
+  },
+  {
+    topIndex: "02", topTitle: "SKILLS LOG", topRight: "5/5",
+    rows: [
+      { index: "01", title: "React / TypeScript",    status: "Advanced" },
+      { index: "02", title: "JavaScript / HTML / CSS", status: "Advanced" },
+      { index: "03", title: "Node.js / PHP",         status: "Complete" },
+      { index: "04", title: "Python / C#",           status: "Complete" },
+      { index: "05", title: "Figma / UI Design",     status: "Practiced" },
+    ],
+    bottomTitle: "STACK",
+    bullets: [
+      "- Frontend : React, TypeScript, Vite, Sass.",
+      "- Backend : Node.js, PHP, MySQL, REST APIs.",
+      "- Outils : Git, Figma, VS Code, Cloudinary.",
+    ],
+  },
+  {
+    topIndex: "03", topTitle: "PROJECTS LOG", topRight: "6",
+    rows: [
+      { index: "01", title: "Challenge 48H",    status: "PHP" },
+      { index: "02", title: "LOL Dashboard",    status: "TypeScript" },
+      { index: "03", title: "Rapport Stage V2", status: "Vue.js" },
+      { index: "04", title: "Discord Bot",      status: "JavaScript" },
+      { index: "05", title: "Breakout Game",    status: "Python" },
+      { index: "06", title: "PokeHamed",        status: "C#" },
+    ],
+    bottomTitle: "INFO",
+    bullets: [
+      "- Voir la section SIDE PROJECTS pour les détails.",
+      "- Projets variés : web, jeux, bots, APIs.",
+      "- Tous disponibles sur GitHub @Ssnakyx.",
+    ],
+  },
+  {
+    topIndex: "04", topTitle: "EXPERIENCE LOG", topRight: "→",
+    rows: [
+      { index: "01", title: "Développeur Freelance", status: "Active" },
+      { index: "02", title: "Challenges étudiants",  status: "Complete" },
+      { index: "03", title: "Projets personnels",    status: "Ongoing" },
+    ],
+    bottomTitle: "DISPONIBILITÉ",
+    bullets: [
+      "- Ouvert aux stages, alternances et freelance.",
+      "- Expérience en développement web full-stack.",
+      "- Réponse rapide : hamed0405n@gmail.com.",
+    ],
+  },
 ];
 
 export default function ResumePage({ src }) {
   const navigate = useNavigate();
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,8 +86,8 @@ export default function ResumePage({ src }) {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowUp") setActive((i) => Math.max(0, i - 1));
-      if (e.key === "ArrowDown") setActive((i) => Math.min(ITEMS.length - 1, i + 1));
+      if (e.key === "ArrowUp")   setActive((i) => Math.max(0, (i ?? 1) - 1));
+      if (e.key === "ArrowDown") setActive((i) => Math.min(ITEMS.length - 1, (i ?? -1) + 1));
       if (e.key === "ArrowLeft") navigate(-1);
       if (e.key === "Escape" || e.key === "Backspace") navigate(-1);
     };
@@ -256,6 +315,7 @@ export default function ResumePage({ src }) {
             inset 0 0 0 1px rgba(133, 244, 255, 0.16),
             16px 16px 0 rgba(0, 6, 30, 0.55);
           overflow: hidden;
+          pointer-events: all;
         }
         .resume-detail-panel::before {
           content: "";
@@ -445,12 +505,8 @@ export default function ResumePage({ src }) {
               key={item.id}
               className={`resume-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 55}ms` }}
-              onMouseEnter={() => {
-                setActive(index);
-              }}
-              onClick={() => {
-                setActive(index);
-              }}
+              onMouseEnter={() => setActive(index)}
+              onClick={() => setActive(prev => prev === index ? null : index)}
             >
               <div className="resume-card">
                 <div className="resume-badge">
@@ -471,37 +527,39 @@ export default function ResumePage({ src }) {
           ))}
         </div>
 
-        {active === 0 && (
-          <div className="resume-detail-panel">
-            <div className="resume-detail-top">
-              <div className="resume-detail-top-index">01</div>
-              <div className="resume-detail-top-title">EDUCATION LOG</div>
-              <div className="resume-detail-top-progress">3/4</div>
-            </div>
-
-            <div className="resume-detail-list">
-              {EDUCATION_ROWS.map((row) => (
-                <div className="resume-detail-row" key={row.index}>
-                  <div className="resume-detail-row-index">{row.index}</div>
-                  <div className="resume-detail-row-title">{row.title}</div>
-                  <div className="resume-detail-status">{row.status}</div>
+        {active !== null && (() => {
+          const p = PANELS[active];
+          return (
+            <div className="resume-detail-panel" key={active}>
+              <div className="resume-detail-top">
+                <div className="resume-detail-top-index">{p.topIndex}</div>
+                <div className="resume-detail-top-title">{p.topTitle}</div>
+                <div className="resume-detail-top-progress">{p.topRight}</div>
+              </div>
+              <div className="resume-detail-list">
+                {p.rows.map((row) => (
+                  <div className="resume-detail-row" key={row.index}>
+                    <div className="resume-detail-row-index">{row.index}</div>
+                    <div className="resume-detail-row-title">{row.title}</div>
+                    <div className="resume-detail-status">{row.status}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="resume-detail-bottom">
+                <div className="resume-detail-bottom-title">{p.bottomTitle}</div>
+                <div className="resume-detail-bullets">
+                  {p.bullets.map((b, i) => (
+                    <div className="resume-detail-bullet" key={i}>{b}</div>
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
-              <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Étudiant en informatique, spécialisation développement web.</div>
-                <div className="resume-detail-bullet">- Projets full-stack réalisés en parallèle des études.</div>
-                <div className="resume-detail-bullet">- Disponible pour stages, freelance et collaborations.</div>
               </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
       </div>
 
+      <BackBtn />
       <div className="resume-mobile-controls" aria-label="Resume mobile controls">
         <button className="resume-mobile-btn" type="button" onClick={() => navigate(-1)}>
           BACK

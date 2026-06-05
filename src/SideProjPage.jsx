@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BackBtn from "./BackBtn";
 const bgVideo = 'https://res.cloudinary.com/dgjkpams2/video/upload/v1777239696/main1_r0c9zc.mp4'
 
 const PROJECTS = [
@@ -83,9 +84,9 @@ export default function SideProjPage() {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowUp")    setActive((i) => Math.max(0, i - 1));
-      if (e.key === "ArrowDown")  setActive((i) => Math.min(PROJECTS.length - 1, i + 1));
-      if (e.key === "Enter")      window.open(PROJECTS[active].url, "_blank");
+      if (e.key === "ArrowUp")    setActive((i) => Math.max(0, (i ?? 0) - 1));
+      if (e.key === "ArrowDown")  setActive((i) => Math.min(PROJECTS.length - 1, (i ?? -1) + 1));
+      if (e.key === "Enter" && active !== null) window.open(PROJECTS[active].url, "_blank");
       if (e.key === "ArrowLeft")  navigate(-1);
       if (e.key === "Escape" || e.key === "Backspace") navigate(-1);
     };
@@ -93,7 +94,7 @@ export default function SideProjPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [active, navigate]);
 
-  const proj = PROJECTS[active];
+  const proj = active !== null ? PROJECTS[active] : null;
 
   return (
     <div id="menu-screen">
@@ -529,7 +530,7 @@ export default function SideProjPage() {
               className={`sp-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 45}ms` }}
               onMouseEnter={() => setActive(index)}
-              onClick={() => setActive(index)}
+              onClick={() => setActive(prev => prev === index ? null : index)}
             >
               <div className="sp-card">
                 <div className="sp-badge">
@@ -547,7 +548,7 @@ export default function SideProjPage() {
           ))}
         </div>
 
-        <div className="sp-detail-panel" key={proj.id}>
+        {proj && <div className="sp-detail-panel" key={proj.id}>
           <div className="sp-detail-top">
             <div className="sp-detail-top-index">{proj.badge}</div>
             <div className="sp-detail-top-title">{proj.title}</div>
@@ -573,7 +574,7 @@ export default function SideProjPage() {
               OPEN ON GITHUB →
             </button>
           </div>
-        </div>
+        </div>}
       </div>
 
       <div className={`sp-footer${mounted ? " mounted" : ""}`}>
@@ -582,17 +583,20 @@ export default function SideProjPage() {
         <div className="sp-footer-row"><span className="sp-footer-key">ESC</span><span>BACK</span></div>
       </div>
 
+      <BackBtn />
       <div className="sp-mobile-controls" aria-label="Side projects mobile controls">
         <button className="sp-mobile-btn" type="button" onClick={() => navigate(-1)}>
           BACK
         </button>
-        <button
-          className="sp-mobile-btn"
-          type="button"
-          onClick={() => window.open(proj.url, "_blank")}
-        >
-          GITHUB
-        </button>
+        {proj && (
+          <button
+            className="sp-mobile-btn"
+            type="button"
+            onClick={() => window.open(proj.url, "_blank")}
+          >
+            GITHUB
+          </button>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BackBtn from "./BackBtn";
 import char1 from "./assets/char1.png";
 import char2 from "./assets/char2.png";
 import char3 from "./assets/char3.png";
@@ -63,10 +64,10 @@ export default function Socials() {
   useEffect(() => {
     const onKey = (e) => {
       if (focus === "left") {
-        if (e.key === "ArrowUp")    setActive(i => Math.max(0, i - 1));
-        if (e.key === "ArrowDown")  setActive(i => Math.min(ITEMS.length - 1, i + 1));
-        if (e.key === "ArrowRight") { setFocus("right"); setActiveInfoBar(0); }
-        if (e.key === "Enter")      window.open(ITEMS[active].href, "_blank");
+        if (e.key === "ArrowUp")    setActive(i => Math.max(0, (i ?? 0) - 1));
+        if (e.key === "ArrowDown")  setActive(i => Math.min(ITEMS.length - 1, (i ?? -1) + 1));
+        if (e.key === "ArrowRight" && active !== null) { setFocus("right"); setActiveInfoBar(0); }
+        if (e.key === "Enter" && active !== null) window.open(ITEMS[active].href, "_blank");
       } else {
         const barCount = ITEMS[active].bars;
         if (e.key === "ArrowUp")   setActiveInfoBar(i => Math.max(0, i - 1));
@@ -639,10 +640,7 @@ export default function Socials() {
           <div
             key={item.id}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-            onClick={() => {
-              if (active === i) window.open(item.href, "_blank");
-              else setActive(i);
-            }}
+            onClick={() => setActive(prev => prev === i ? null : i)}
             onMouseEnter={() => setActive(i)}
           >
             <div className="sc-bar-red" />
@@ -678,7 +676,7 @@ export default function Socials() {
         ))}
       </div>
 
-      {mounted && (
+      {mounted && active !== null && (
         <div className="sc-right-nav" key={active}>
           <span className="sc-nav-arrow left">◄</span>
           <span className="sc-nav-btn">LB</span>
@@ -688,7 +686,7 @@ export default function Socials() {
         </div>
       )}
 
-      {mounted && (
+      {mounted && active !== null && (
         <div className="sc-info-panel" key={`panel-${active}`}>
           {Array.from({ length: ITEMS[active].bars }).map((_, i) => (
             <div
@@ -724,13 +722,16 @@ export default function Socials() {
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
       </div>
 
-      <img
-        className="sc-mobile-portrait"
-        src={CHARS[active]}
-        alt=""
-        key={active}
-      />
+      {active !== null && (
+        <img
+          className="sc-mobile-portrait"
+          src={CHARS[active]}
+          alt=""
+          key={active}
+        />
+      )}
 
+      <BackBtn />
       <div className="sc-mobile-controls" aria-label="Socials mobile controls">
         <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
           BACK
@@ -738,7 +739,7 @@ export default function Socials() {
         <button
           className="sc-mobile-btn"
           type="button"
-          onClick={() => window.open(ITEMS[active].href, "_blank")}
+          onClick={() => active !== null && window.open(ITEMS[active].href, "_blank")}
         >
           OPEN
         </button>

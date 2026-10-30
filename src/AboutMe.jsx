@@ -20,7 +20,7 @@ const REVEAL_CONTENT = [
     upper: [
       "nom : hamed kaffa",
       "âge : 23 ans",
-      "formation : mastère 1 informatique",
+      "formation : master 1 développement full-stack",
       "statut : cherche une alternance (lyon / remote)",
     ],
     lower: "dev full-stack & game dev",

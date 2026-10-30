@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
 
 const ITEMS = [
-  { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: "Mastère 1 Informatique / Ynov", rank: 4 },
+  { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: "Master 1 Dév. Full-Stack / Ynov", rank: 4 },
   { id: "ii",  badge: "II",  title: "SKILLS",     subtitle: "Web / Temps réel / Game dev",  rank: 5 },
   { id: "iii", badge: "III", title: "PROJECTS",   subtitle: "Sélection GitHub",             rank: 5 },
   { id: "iv",  badge: "IV",  title: "EXPERIENCE", subtitle: "Projets / Alternance",         rank: 3 },
@@ -13,14 +13,14 @@ const PANELS = [
   {
     topIndex: "01", topTitle: "EDUCATION LOG", topRight: "M1",
     rows: [
-      { index: "01", title: "Mastère 1",             status: "En cours" },
+      { index: "01", title: "Master 1 Full-Stack",   status: "En cours" },
       { index: "02", title: "Bachelor Informatique", status: "Validé" },
       { index: "03", title: "DevOps / CI-CD",        status: "Validé" },
       { index: "04", title: "Méthodes agiles",       status: "Validé" },
     ],
     bottomTitle: "DETAILS",
     bullets: [
-      "- Étudiant en Mastère 1 informatique, spécialisation développement.",
+      "- Étudiant en Master 1 développement full-stack.",
       "- Projets de groupe (Kivro, fil rouge, TechBoard) et projets perso en parallèle.",
       "- À la recherche d'une alternance en développement (Lyon / télétravail).",
     ],

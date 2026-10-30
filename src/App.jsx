@@ -11,6 +11,7 @@ import PageTransition from './PageTransition'
 import Socials from './Socials'
 import AboutMe from './AboutMe'
 import SideProjPage from './SideProjPage'
+import RobloxPage from './RobloxPage'
 import CustomCursor from './CustomCursor'
 import WelcomeOverlay from './WelcomeOverlay'
 import './App.css'
@@ -45,6 +46,9 @@ function AnimatedRoutes() {
         } />
         <Route path="/sideproj" element={
           <PageTransition><SideProjPage /></PageTransition>
+        } />
+        <Route path="/roblox" element={
+          <PageTransition><RobloxPage /></PageTransition>
         } />
       </Routes>
     </AnimatePresence>

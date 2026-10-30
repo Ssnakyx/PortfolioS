@@ -34,7 +34,7 @@ export default function BackBtn() {
       <button
         className="back-btn-desktop"
         type="button"
-        onClick={() => navigate(-1)}
+        onClick={() => navigate('/')}
       >
         ◄ BACK
       </button>

@@ -3,80 +3,80 @@ import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
 
 const ITEMS = [
-  { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: "Computer Science",     rank: 4 },
-  { id: "ii",  badge: "II",  title: "SKILLS",     subtitle: "Frontend / Backend / UI", rank: 5 },
-  { id: "iii", badge: "III", title: "PROJECTS",   subtitle: "Featured Work",         rank: 5 },
-  { id: "iv",  badge: "IV",  title: "EXPERIENCE", subtitle: "Freelance / Personal",  rank: 3 },
+  { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: "Bachelor Informatique / Ynov", rank: 4 },
+  { id: "ii",  badge: "II",  title: "SKILLS",     subtitle: "Web / Temps réel / Game dev",  rank: 5 },
+  { id: "iii", badge: "III", title: "PROJECTS",   subtitle: "Sélection GitHub",             rank: 5 },
+  { id: "iv",  badge: "IV",  title: "EXPERIENCE", subtitle: "Projets / Alternance",         rank: 3 },
 ];
 
 const PANELS = [
   {
-    topIndex: "01", topTitle: "EDUCATION LOG", topRight: "3/4",
+    topIndex: "01", topTitle: "EDUCATION LOG", topRight: "B3",
     rows: [
-      { index: "01", title: "Computer Science", status: "In Progress" },
-      { index: "02", title: "Web Development",  status: "Complete" },
-      { index: "03", title: "Frontend Frameworks", status: "Complete" },
-      { index: "04", title: "Backend Basics",   status: "Complete" },
+      { index: "01", title: "Bachelor Informatique", status: "En cours" },
+      { index: "02", title: "DevOps / CI-CD",        status: "Validé" },
+      { index: "03", title: "Méthodes agiles",       status: "Validé" },
+      { index: "04", title: "Challenges 48h",        status: "Validé" },
     ],
     bottomTitle: "DETAILS",
     bullets: [
-      "- Étudiant en informatique, spécialisation développement web.",
-      "- Projets full-stack réalisés en parallèle des études.",
-      "- Disponible pour stages, freelance et collaborations.",
+      "- Étudiant en informatique, spécialisation développement.",
+      "- Projets de groupe (Kivro, fil rouge, TechBoard) et projets perso en parallèle.",
+      "- À la recherche d'une alternance en développement (Lyon / télétravail).",
     ],
   },
   {
     topIndex: "02", topTitle: "SKILLS LOG", topRight: "5/5",
     rows: [
-      { index: "01", title: "React / TypeScript",    status: "Advanced" },
-      { index: "02", title: "JavaScript / HTML / CSS", status: "Advanced" },
-      { index: "03", title: "Node.js / PHP",         status: "Complete" },
-      { index: "04", title: "Python / C#",           status: "Complete" },
-      { index: "05", title: "Figma / UI Design",     status: "Practiced" },
+      { index: "01", title: "Frontend",     status: "Avancé" },
+      { index: "02", title: "Backend",      status: "Solide" },
+      { index: "03", title: "Temps réel",   status: "Solide" },
+      { index: "04", title: "Game dev",     status: "Passion" },
+      { index: "05", title: "IA & outils",  status: "Quotidien" },
     ],
     bottomTitle: "STACK",
     bullets: [
-      "- Frontend : React, TypeScript, Vite, Sass.",
-      "- Backend : Node.js, PHP, MySQL, REST APIs.",
-      "- Outils : Git, Figma, VS Code, Cloudinary.",
+      "- Front : TypeScript, React, Vue 3, Nuxt, Pinia, Tailwind, Vite, Framer Motion.",
+      "- Back : Node.js, Express, Socket.io, Go, PHP, Python, SQLite / MySQL.",
+      "- Jeux : Roblox (Luau, Rojo), Godot, C#, Pygame.",
+      "- Outils : Git, GitHub Actions, tests automatisés, Vercel, Claude Code, API LLM.",
     ],
   },
   {
-    topIndex: "03", topTitle: "PROJECTS LOG", topRight: "6",
+    topIndex: "03", topTitle: "PROJECTS LOG", topRight: "TOP",
     rows: [
-      { index: "01", title: "Challenge 48H",    status: "PHP" },
-      { index: "02", title: "LOL Dashboard",    status: "TypeScript" },
-      { index: "03", title: "Rapport Stage V2", status: "Vue.js" },
-      { index: "04", title: "Discord Bot",      status: "JavaScript" },
-      { index: "05", title: "Breakout Game",    status: "Python" },
-      { index: "06", title: "PokeHamed",        status: "C#" },
+      { index: "01", title: "Undercover",       status: "TS / Socket.io" },
+      { index: "02", title: "Alternance Bot",   status: "TS / IA" },
+      { index: "03", title: "Eclipse Clicker",  status: "Vue 3" },
+      { index: "04", title: "osu! Replay",      status: "Python" },
+      { index: "05", title: "Steal a Fossil",   status: "Roblox" },
     ],
     bottomTitle: "INFO",
     bullets: [
-      "- Voir la section SIDE PROJECTS pour les détails.",
-      "- Projets variés : web, jeux, bots, APIs.",
-      "- Tous disponibles sur GitHub @Ssnakyx.",
+      "- Détails et liens dans SIDE PROJECTS et ROBLOX GAMES.",
+      "- Projets variés : jeux multijoueurs, outils IA, sites, bots.",
+      "- Code disponible sur GitHub @Ssnakyx.",
     ],
   },
   {
     topIndex: "04", topTitle: "EXPERIENCE LOG", topRight: "→",
     rows: [
-      { index: "01", title: "Développeur Freelance", status: "Active" },
-      { index: "02", title: "Challenges étudiants",  status: "Complete" },
+      { index: "01", title: "Projets clients école", status: "Équipe" },
+      { index: "02", title: "Jeux Roblox",           status: "En cours" },
       { index: "03", title: "Projets personnels",    status: "Ongoing" },
     ],
     bottomTitle: "DISPONIBILITÉ",
     bullets: [
-      "- Ouvert aux stages, alternances et freelance.",
-      "- Expérience en développement web full-stack.",
-      "- Réponse rapide : hamed0405n@gmail.com.",
+      "- Ouvert à l'alternance et aux stages en développement.",
+      "- Habitué à livrer vite : tests, CI et déploiement sur chaque projet.",
+      "- Contact : hamed0405n@gmail.com.",
     ],
   },
 ];
 
 export default function ResumePage({ src }) {
   const navigate = useNavigate();
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -88,8 +88,8 @@ export default function ResumePage({ src }) {
     const onKey = (e) => {
       if (e.key === "ArrowUp")   setActive((i) => Math.max(0, (i ?? 1) - 1));
       if (e.key === "ArrowDown") setActive((i) => Math.min(ITEMS.length - 1, (i ?? -1) + 1));
-      if (e.key === "ArrowLeft") navigate(-1);
-      if (e.key === "Escape" || e.key === "Backspace") navigate(-1);
+      if (e.key === "ArrowLeft") navigate('/');
+      if (e.key === "Escape" || e.key === "Backspace") navigate('/');
     };
 
     window.addEventListener("keydown", onKey);
@@ -506,7 +506,7 @@ export default function ResumePage({ src }) {
               className={`resume-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 55}ms` }}
               onMouseEnter={() => setActive(index)}
-              onClick={() => setActive(prev => prev === index ? null : index)}
+              onClick={() => setActive(index)}
             >
               <div className="resume-card">
                 <div className="resume-badge">
@@ -561,7 +561,7 @@ export default function ResumePage({ src }) {
 
       <BackBtn />
       <div className="resume-mobile-controls" aria-label="Resume mobile controls">
-        <button className="resume-mobile-btn" type="button" onClick={() => navigate(-1)}>
+        <button className="resume-mobile-btn" type="button" onClick={() => navigate('/')}>
           BACK
         </button>
       </div>

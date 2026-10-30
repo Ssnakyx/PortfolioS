@@ -6,9 +6,11 @@ const ITEMS = [
   { id: "github",  label: "GITHUB LINK",   page: "github",  fontSize: 68, offsetX: 8, offsetY: 6,  skew: 0, skewY: -4  },
   { id: "socials", label: "SOCIALS",       page: "socials", fontSize: 74, offsetX: 16, offsetY: 8,  skew: -3,  skewY: 5   },
   { id: "sideproj",label: "SIDE PROJECTS", page: "sideproj",fontSize: 56, offsetX: 10, offsetY: 6,  skew: -4,  skewY: 7   },
+  { id: "roblox",  label: "ROBLOX GAMES",  page: "roblox",  fontSize: 60, offsetX: 4,  offsetY: 6,  skew: -8,  skewY: -6  },
 ];
 
 const CLIP_SHAPES = [
+  (w, h) => `polygon(0px 0px, ${w}px ${h * 0.5}px, 0px ${h}px)`,
   (w, h) => `polygon(0px 0px, ${w}px ${h * 0.5}px, 0px ${h}px)`,
   (w, h) => `polygon(0px 0px, ${w}px ${h * 0.5}px, 0px ${h}px)`,
   (w, h) => `polygon(0px 0px, ${w}px ${h * 0.5}px, 0px ${h}px)`,
@@ -335,8 +337,8 @@ export default function P3Menu({ onNavigate }) {
             <div className="p3-hint-row"><span>TAP TO SELECT</span></div>
           ) : (
             <>
-              <div className="p3-hint-row"><span className="p3-hint-key">↑↓</span><span>NAVIGATE</span></div>
-              <div className="p3-hint-row"><span className="p3-hint-key">↵</span><span>CONFIRM</span></div>
+              <div className="p3-hint-row"><span className="p3-hint-key">CLICK</span><span>SELECT</span></div>
+              <div className="p3-hint-row"><span className="p3-hint-key">↑↓ ↵</span><span>KEYBOARD</span></div>
             </>
           )}
         </div>

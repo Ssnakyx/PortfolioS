@@ -9,6 +9,7 @@ function DefaultTransition() {
       key={i}
       style={{
         position: "fixed",
+        pointerEvents: "none",
         inset: 0,
         background: color,
         zIndex: 999 - i,
@@ -38,6 +39,7 @@ function AboutTransition() {
       key={i}
       style={{
         position: "fixed",
+        pointerEvents: "none",
         top: panel.top,
         left: panel.left,
         width: panel.width,
@@ -73,6 +75,7 @@ function SocialsTransition() {
       key={i}
       style={{
         position: "fixed",
+        pointerEvents: "none",
         top: "-6vh",
         left: stripe.left,
         width: stripe.width,
@@ -114,6 +117,7 @@ function ResumeTransition() {
       key={i}
       style={{
         position: "fixed",
+        pointerEvents: "none",
         left: "-6vw",
         top: card.top,
         width: "78vw",

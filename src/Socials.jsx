@@ -22,7 +22,7 @@ const ROLES = [
 const ITEMS = [
   {
     id: "github", label: "GITHUB", handle: "@Ssnakyx", href: "https://github.com/Ssnakyx", icon: "💻", barIcon: icon1, bars: 3, newBars: [0], counts: ["PROFILE", "REPOS", "PORTFOLIO"],
-    links: ["github.com/Ssnakyx", "github.com/Ssnakyx?tab=repositories", "github.com/Ssnakyx/persona3-Portfolio"],
+    links: ["github.com/Ssnakyx", "github.com/Ssnakyx?tab=repositories", "github.com/Ssnakyx/PortfolioS"],
     stats: [
       { tag: "REPO", value: "10+", color: "#6e5494" },
       { tag: "STR",  value: "5+",  color: "#4078c0" },
@@ -75,7 +75,7 @@ export default function Socials() {
         if (e.key === "ArrowLeft") setFocus("left");
         if (e.key === "Enter")     window.open("https://" + ITEMS[active].links[activeInfoBar], "_blank");
       }
-      if ((e.key === "ArrowLeft" && focus === "left") || e.key === "Escape" || e.key === "Backspace") navigate(-1);
+      if ((e.key === "ArrowLeft" && focus === "left") || e.key === "Escape" || e.key === "Backspace") navigate('/');
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -717,7 +717,7 @@ export default function Socials() {
       )}
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
-        <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">CLICK / ↑↓</span><span>SELECT</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>OPEN</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
       </div>
@@ -733,7 +733,7 @@ export default function Socials() {
 
       <BackBtn />
       <div className="sc-mobile-controls" aria-label="Socials mobile controls">
-        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
+        <button className="sc-mobile-btn" type="button" onClick={() => navigate('/')}>
           BACK
         </button>
         <button

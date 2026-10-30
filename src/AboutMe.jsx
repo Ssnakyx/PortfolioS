@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import BackBtn from "./BackBtn";
 import char1 from "./assets/char1.png";
 import char2 from "./assets/char2.png";
 import char3 from "./assets/char3.png";
@@ -16,24 +17,29 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["name: hamed kaffa", "age: 23", "formation: informatique", "statut: disponible — avr'26"],
-    lower: "développeur full-stack",
+    upper: [
+      "nom : hamed kaffa",
+      "âge : 23 ans",
+      "formation : bachelor informatique (3e année)",
+      "statut : cherche une alternance (lyon / remote)",
+    ],
+    lower: "dev full-stack & game dev",
   },
   {
     upper: [
-      "passionné par la création d'expériences digitales modernes et performantes.",
-      "je travaille avec vue.js, react et les technos web modernes.",
-      "je transforme des idées en produits fiables et agréables à utiliser.",
+      "je crée des jeux multijoueurs, des outils et des sites.",
+      "web : typescript, react, vue, node. jeux : roblox, godot.",
+      "chaque projet : tests, ci et version en ligne.",
     ],
-    lower: "github: ssnakyx  •  email: hamed0405n@gmail.com",
+    lower: "hamed0405n@gmail.com",
   },
   {
     upper: [
-      "i once spent 3 hours on a css animation 99% of users won't notice.",
-      "strong opinions on transition durations — it's 150ms, obviously.",
-      "my commit messages are cleaner than my explanations.",
+      "j'ai codé un bot qui cherche mon alternance à ma place.",
+      "3 heures sur une animation css que personne ne remarque.",
+      "ce portfolio est inspiré de persona 3 reload.",
     ],
-    lower: "fun facts about the dev",
+    lower: "fun facts",
   },
 ];
 
@@ -53,7 +59,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "funfact", label: "FUN FACT ABOUT ME", handle: "@hamed-kaffa", href: "https://www.linkedin.com/in/hamed-kaffa-98587032a/", icon: "💡", barIcon: icon2, bars: 3, newBars: [0], counts: ["Vue.js", "React", "Node"],
+    id: "story", label: "WHAT I DO", handle: "@hamed-kaffa", href: "https://www.linkedin.com/in/hamed-kaffa-98587032a/", icon: "💡", barIcon: icon2, bars: 3, newBars: [0], counts: ["Vue.js", "React", "Node"],
     links: ["linkedin.com/in/hamed-kaffa-98587032a/", "github.com/Ssnakyx", "github.com/Ssnakyx?tab=repositories"],
     stats: [
       { tag: "STK", value: "FS",   color: "#e1306c" },
@@ -61,7 +67,7 @@ const ITEMS = [
     ],
   },
   {
-    id: "weirdfact", label: "WEIRD FACT ABOUT ME", handle: "hamed0405n@gmail.com", href: "mailto:hamed0405n@gmail.com", icon: "🎯", barIcon: icon3, bars: 3, newBars: [0, 1], counts: ["150ms", "2sp", "dark"],
+    id: "funfact", label: "FUN FACTS", handle: "hamed0405n@gmail.com", href: "mailto:hamed0405n@gmail.com", icon: "🎯", barIcon: icon3, bars: 3, newBars: [0, 1], counts: ["150ms", "2sp", "dark"],
     links: ["github.com/Ssnakyx", "linkedin.com/in/hamed-kaffa-98587032a/", "github.com/Ssnakyx?tab=repositories"],
     stats: [
       { tag: "THM", value: "DRK", color: "#00f2ea" },
@@ -101,9 +107,12 @@ export default function AboutMe() {
       if (e.key === "ArrowRight") setRevealed(true);
       if (e.key === "ArrowLeft") {
         if (revealed) setRevealed(false);
-        else navigate(-1);
+        else navigate('/');
       }
-      if (e.key === "Escape" || e.key === "Backspace") navigate(-1);
+      if (e.key === "Escape" || e.key === "Backspace") {
+        if (revealed) setRevealed(false);
+        else navigate('/');
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -125,11 +134,25 @@ export default function AboutMe() {
       )}
       {revealed && (
         <div key={`nav-${active}`} className="sc-right-nav">
-          <span className="sc-nav-arrow left">◄</span>
-          <span className="sc-nav-btn">LB</span>
+          <button
+            type="button"
+            className="sc-nav-click"
+            aria-label="Précédent"
+            onClick={() => setActive(i => (i + ITEMS.length - 1) % ITEMS.length)}
+          >
+            <span className="sc-nav-arrow left">◄</span>
+            <span className="sc-nav-btn">LB</span>
+          </button>
           <span className="sc-nav-dot" />
-          <span className="sc-nav-btn">RB</span>
-          <span className="sc-nav-arrow right">►</span>
+          <button
+            type="button"
+            className="sc-nav-click"
+            aria-label="Suivant"
+            onClick={() => setActive(i => (i + 1) % ITEMS.length)}
+          >
+            <span className="sc-nav-btn">RB</span>
+            <span className="sc-nav-arrow right">►</span>
+          </button>
         </div>
       )}
       {revealed && (
@@ -351,6 +374,38 @@ export default function AboutMe() {
           background: none;
           border: none;
           padding: 0 6px;
+        }
+        .sc-nav-click {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          pointer-events: all;
+          transition: transform 0.15s ease;
+        }
+        .sc-nav-click:hover { transform: scale(1.06); }
+        .sc-close-btn {
+          position: fixed;
+          bottom: 24px;
+          left: 150px;
+          z-index: 30;
+          font-family: 'Anton', sans-serif;
+          font-size: 16px;
+          letter-spacing: 3px;
+          color: #fff;
+          background: rgba(196, 0, 26, 0.7);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          padding: 9px 20px 9px 14px;
+          clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+          cursor: pointer;
+          transition: background 0.15s ease;
+        }
+        .sc-close-btn:hover { background: rgba(196, 0, 26, 0.95); }
+        @media (max-width: 768px) {
+          .sc-close-btn { display: none; }
         }
         .sc-right-nav .sc-nav-dot {
           width: 16px;
@@ -788,13 +843,19 @@ export default function AboutMe() {
       </div>
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
-        <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
-        <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>REVEAL</span></div>
-        <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">CLICK</span><span>REVEAL / HIDE</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">↑↓ ↵</span><span>KEYBOARD</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>CLOSE / BACK</span></div>
       </div>
 
+      {revealed && (
+        <button className="sc-close-btn" type="button" onClick={() => setRevealed(false)}>
+          ✕ CLOSE
+        </button>
+      )}
+      <BackBtn />
       <div className="sc-mobile-controls" aria-label="About mobile controls">
-        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
+        <button className="sc-mobile-btn" type="button" onClick={() => navigate('/')}>
           BACK
         </button>
         <button className="sc-mobile-btn" type="button" onClick={() => setRevealed((prev) => !prev)}>

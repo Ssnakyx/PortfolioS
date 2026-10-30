@@ -6,7 +6,7 @@ export default function VideoPage({ src }) {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'ArrowLeft') navigate(-1)
+      if (e.key === 'ArrowLeft') navigate('/')
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)

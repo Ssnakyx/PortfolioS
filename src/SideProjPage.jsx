@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
 const bgVideo = 'https://res.cloudinary.com/dgjkpams2/video/upload/v1777239696/main1_r0c9zc.mp4'
@@ -104,6 +104,14 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
   const navigate = useNavigate();
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [tapped, setTapped] = useState(0);
+  const detailRef = useRef(null);
+
+  // Sur mobile le détail est sous la liste : on y descend après un tap.
+  useEffect(() => {
+    if (!tapped || !window.matchMedia("(max-width: 768px)").matches) return;
+    detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [tapped]);
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 80);
@@ -327,6 +335,8 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
           right: 4.5vw;
           width: min(39vw, 620px);
           min-height: 74vh;
+          max-height: 84vh;
+          overflow-y: auto;
           z-index: 12;
           padding: 22px 24px 24px 24px;
           background: linear-gradient(180deg, rgba(15, 28, 105, 0.96) 0%, rgba(8, 16, 68, 0.97) 100%);
@@ -334,7 +344,6 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
           box-shadow:
             inset 0 0 0 1px rgba(133, 244, 255, 0.16),
             16px 16px 0 rgba(0, 6, 30, 0.55);
-          overflow: hidden;
           pointer-events: all;
         }
         .sp-detail-panel::before {
@@ -431,9 +440,15 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
           color: #8ef5ff;
           box-shadow: inset 0 0 0 2px #8ef5ff;
         }
-        .sp-github-btn.disabled {
-          cursor: default;
-          opacity: 0.55;
+        .sp-tags-label {
+          position: relative;
+          margin: 16px 0 -4px;
+        }
+        .sp-detail-skill {
+          font-family: 'Anton', sans-serif;
+          font-size: 18px;
+          line-height: 1.3;
+          color: #edfaff;
         }
         .sp-stack-scroll {
           max-height: calc((91vh - 190px) / 0.9);
@@ -593,7 +608,7 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
               className={`sp-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 45}ms` }}
               onMouseEnter={() => setActive(index)}
-              onClick={() => setActive(index)}
+              onClick={() => { setActive(index); setTapped((t) => t + 1); }}
             >
               <div className="sp-card">
                 <div className="sp-badge">
@@ -612,7 +627,7 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
           </div>
         </div>
 
-        {proj && <div className="sp-detail-panel" key={proj.id}>
+        {proj && <div className="sp-detail-panel" key={proj.id} ref={detailRef}>
           <div className="sp-detail-top">
             <div className="sp-detail-top-index">{proj.badge}</div>
             <div className="sp-detail-top-title">{proj.title}</div>
@@ -624,13 +639,23 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
             <div className="sp-detail-desc-text">{proj.description}</div>
           </div>
 
+          <div className="sp-detail-desc-label sp-tags-label">OUTILS</div>
           <div className="sp-detail-tags">
             {proj.tags.map((tag) => (
               <span className="sp-tag" key={tag}>{tag}</span>
             ))}
           </div>
 
-          <div className="sp-detail-github">
+          {proj.skills && (
+            <div className="sp-detail-desc">
+              <div className="sp-detail-desc-label">COMPÉTENCES</div>
+              {proj.skills.map((skill) => (
+                <div className="sp-detail-skill" key={skill}>— {skill}</div>
+              ))}
+            </div>
+          )}
+
+          {(proj.demo || proj.url) && <div className="sp-detail-github">
             {proj.demo && (
               <a className="sp-github-btn" href={proj.demo} target="_blank" rel="noopener noreferrer">
                 {proj.demoLabel ?? "VOIR LA DÉMO"} →
@@ -640,10 +665,8 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
               <a className="sp-github-btn alt" href={proj.url} target="_blank" rel="noopener noreferrer">
                 {linkLabel} →
               </a>
-            ) : (
-              !proj.demo && <span className="sp-github-btn disabled">BIENTÔT EN LIGNE</span>
-            )}
-          </div>
+            ) : null}
+          </div>}
         </div>}
       </div>
 

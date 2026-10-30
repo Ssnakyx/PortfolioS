@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react';
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none), (max-width: 768px)').matches;
+
+const alreadySeen = () => {
+  try { return sessionStorage.getItem('welcome-seen') === '1'; } catch { return false; }
+};
+
 export default function WelcomeOverlay() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(() => !alreadySeen());
   const [fading, setFading] = useState(false);
 
   const dismiss = () => {
     if (fading) return;
     setFading(true);
+    try { sessionStorage.setItem('welcome-seen', '1'); } catch { /* stockage indisponible */ }
     setTimeout(() => setVisible(false), 350);
   };
 
@@ -135,38 +142,51 @@ export default function WelcomeOverlay() {
         <div className="wo-box">
           <div className="wo-title">NAVIGATION</div>
 
-          <div className="wo-section">
-            <div className="wo-row">
-              <span className="wo-key">↑</span>
-              <span className="wo-key">↓</span>
-              <span>NAVIGATE</span>
+          {isTouch ? (
+            <div className="wo-section">
+              <div className="wo-row">
+                <span className="wo-key">TAP</span>
+                <span>SELECT / OPEN</span>
+              </div>
+              <div className="wo-row">
+                <span className="wo-key">BACK</span>
+                <span>RETOUR AU MENU</span>
+              </div>
+              <div className="wo-row">
+                <span className="wo-key">SCROLL</span>
+                <span>VOIR LA SUITE</span>
+              </div>
             </div>
-            <div className="wo-row">
-              <span className="wo-key">↵</span>
-              <span>CONFIRM / OPEN</span>
-            </div>
-            <div className="wo-row">
-              <span className="wo-key">ESC</span>
-              <span>GO BACK</span>
-            </div>
-          </div>
+          ) : (
+            <>
+              <div className="wo-section">
+                <div className="wo-row">
+                  <span className="wo-key">CLICK</span>
+                  <span>SELECT / OPEN</span>
+                </div>
+                <div className="wo-row">
+                  <span className="wo-key">◄ BACK</span>
+                  <span>RETOUR AU MENU</span>
+                </div>
+                <div className="wo-row">
+                  <span className="wo-key">✕ CLOSE</span>
+                  <span>FERMER UN PANNEAU</span>
+                </div>
+              </div>
+              <div className="wo-section">
+                <div className="wo-row">
+                  <span className="wo-key">↑↓ ↵</span>
+                  <span>CLAVIER (OPTIONNEL)</span>
+                </div>
+                <div className="wo-row">
+                  <span className="wo-key">ESC</span>
+                  <span>FERMER / RETOUR</span>
+                </div>
+              </div>
+            </>
+          )}
 
-          <div className="wo-section">
-            <div className="wo-row">
-              <span className="wo-key">HOVER</span>
-              <span>SELECT</span>
-            </div>
-            <div className="wo-row">
-              <span className="wo-key">CLICK</span>
-              <span>CONFIRM</span>
-            </div>
-            <div className="wo-row">
-              <span className="wo-key">2× CLICK</span>
-              <span>CLOSE PANEL</span>
-            </div>
-          </div>
-
-          <div className="wo-dismiss">CLICK OR PRESS ANY KEY TO DISMISS</div>
+          <div className="wo-dismiss">{isTouch ? 'TAP TO START' : 'CLICK TO START'}</div>
         </div>
       </div>
     </>

@@ -1,37 +1,51 @@
 import SideProjPage from "./SideProjPage";
 
-// Ajouter le lien roblox.com/games/... dans `demo` dès qu'un jeu est publié.
 const GAMES = [
   {
     id: "steal-a-fossil",
     badge: "01",
     title: "STEAL A FOSSIL",
-    subtitle: "Roblox / Simulateur PvP",
+    subtitle: "Simulateur PvP / Collection",
     lang: "LUAU",
-    description: "Cours sur la route préhistorique, arrache des blocs fossiles gardés par des dinos vivants, ramène-les dans ton parc, réanime-les et fusionne-les en hybrides. Code en Luau strict avec Rojo, tests hors Studio et CI sur chaque PR.",
-    tags: ["Luau", "Rojo", "Selene", "CI", "DataStores"],
+    description: "Cours sur la route préhistorique, vole des fossiles gardés par des dinos, ramène-les dans ton parc, réanime-les et fusionne-les en hybrides.",
+    tags: ["Roblox Studio", "Luau strict", "Rojo", "Selene", "StyLua", "GitHub Actions"],
+    skills: [
+      "Architecture client / serveur en services et controllers",
+      "Sécurité des RemoteEvents (le serveur valide tout)",
+      "Sauvegardes DataStore fiables",
+      "Tests automatisés hors Studio et CI sur chaque PR",
+    ],
     url: "https://github.com/Ssnakyx/Steal-a-Fossile",
-    demoLabel: "JOUER SUR ROBLOX",
   },
   {
     id: "launch-to-space",
     badge: "02",
     title: "LAUNCH TO SPACE",
-    subtitle: "Roblox / Simulateur",
+    subtitle: "Simulateur spatial",
     lang: "LUAU",
-    description: "Jeu de conquête spatiale : décolle de la Terre et pousse jusqu'à la Lune puis Mars. Systèmes en autorité serveur, interface et effets visuels faits sur mesure, outillage Rojo, Wally, Selene et StyLua.",
-    tags: ["Luau", "Rojo", "Wally", "UI", "VFX"],
-    demoLabel: "JOUER SUR ROBLOX",
+    description: "Décolle de la Terre et vise toujours plus loin : la Lune, puis Mars.",
+    tags: ["Roblox Studio", "Luau", "Rojo", "Wally", "Blender"],
+    skills: [
+      "Systèmes de jeu en autorité serveur",
+      "Interface (UI) faite sur mesure",
+      "Effets visuels (VFX) et particules",
+      "Modélisation 3D dans Blender",
+    ],
   },
   {
     id: "dohi",
     badge: "03",
     title: "DOHI",
-    subtitle: "Roblox / Jeu de bluff",
+    subtitle: "Jeu de bluff multijoueur",
     lang: "LUAU",
-    description: "Jeu de bluff de 2 à 8 joueurs en vue à la première personne, assis autour d'une table dans un bar clandestin sombre. Ambiance, caméra et animations travaillées, modèles faits dans Blender.",
-    tags: ["Luau", "Rojo", "Blender", "Multijoueur"],
-    demoLabel: "JOUER SUR ROBLOX",
+    description: "Jeu de bluff de 2 à 8 joueurs, en vue à la première personne, assis autour d'une table dans un bar clandestin sombre.",
+    tags: ["Roblox Studio", "Luau", "Rojo", "Lune", "Blender"],
+    skills: [
+      "Logique de jeu au tour par tour en multijoueur",
+      "Caméra et animations à la première personne",
+      "Direction artistique et ambiance (lumière, décor)",
+      "Modèles 3D faits main dans Blender",
+    ],
   },
 ];
 

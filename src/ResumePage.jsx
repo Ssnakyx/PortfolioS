@@ -49,7 +49,7 @@ const PANELS = [
       { index: "02", title: "Alternance Bot",   status: "TS / IA" },
       { index: "03", title: "Eclipse Clicker",  status: "Vue 3" },
       { index: "04", title: "osu! Replay",      status: "Python" },
-      { index: "05", title: "Steal a Fossil",   status: "Roblox" },
+      { index: "05", title: "Eggs & Pet Fusion", status: "Roblox" },
     ],
     bottomTitle: "INFO",
     bullets: [

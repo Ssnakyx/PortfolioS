@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
+import { IS_DISCORD } from "./privacy";
 const bgVideo = 'https://res.cloudinary.com/dgjkpams2/video/upload/v1777239696/main1_r0c9zc.mp4'
 
 const PROJECTS = [
@@ -87,6 +88,8 @@ const PROJECTS = [
     tags: ["PHP", "HTML", "CSS", "Équipe"],
     url: "https://github.com/Ssnakyx/Challenge48h-G9",
   },
+  // Version Discord : le dépôt PokeHamed contient le prénom, il est retiré du build.
+  ...(IS_DISCORD ? [] : [
   {
     id: "pokehamed",
     badge: "09",
@@ -97,6 +100,7 @@ const PROJECTS = [
     tags: ["C#", ".NET", "POO", "Game Dev"],
     url: "https://github.com/Ssnakyx/PokeHamed",
   },
+]),
 ];
 
 export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS", linkLabel = "GITHUB" }) {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
+import { IS_DISCORD } from "./privacy";
 
 const ITEMS = [
   { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: "Master 1 Dév. Full-Stack / Ynov", rank: 4 },
@@ -69,7 +70,7 @@ const PANELS = [
     bullets: [
       "- Ouvert à l'alternance et aux stages en développement.",
       "- Habitué à livrer vite : tests, CI et déploiement sur chaque projet.",
-      "- Contact : hamed0405n@gmail.com.",
+      IS_DISCORD ? "- Contact : Ssnakyx sur Discord ou GitHub." : "- Contact : hamed0405n@gmail.com.",
     ],
   },
 ];

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { IS_DISCORD } from "./privacy";
 
 const ITEMS = [
   { id: "about",   label: "ABOUT ME",      page: "about",   fontSize: 80, offsetX: 0,  offsetY: 0,  skew: -6,  skewY: 10  },
@@ -260,7 +261,7 @@ export default function P3Menu({ onNavigate }) {
 
       <div className="p3-overlay">
         <div className="p3-name-tag">
-          <span>hamed's</span>
+          <span>{IS_DISCORD ? "ssnakyx's" : "hamed's"}</span>
           <span>portfolio</span>
         </div>
         <div className="p3-stripe" />

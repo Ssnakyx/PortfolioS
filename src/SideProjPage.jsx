@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
 import { IS_DISCORD } from "./privacy";
+import { useLang } from "./i18n";
 const bgVideo = 'https://res.cloudinary.com/dgjkpams2/video/upload/v1777239696/main1_r0c9zc.mp4'
 
 const PROJECTS = [
@@ -9,9 +10,12 @@ const PROJECTS = [
     id: "undercover",
     badge: "01",
     title: "UNDERCOVER",
-    subtitle: "Jeu multijoueur temps réel",
+    subtitle: { fr: "Jeu multijoueur temps réel", en: "Real-time multiplayer game" },
     lang: "TS",
-    description: "Le jeu d'ambiance Undercover version gaming, de 3 à 12 joueurs, un téléphone chacun. Quatre univers (LoL, Smash, Pokémon, jeux vidéo), rôles spéciaux et votes en direct. Moteur de jeu testé côté serveur.",
+    description: {
+      fr: "Le jeu d'ambiance Undercover version gaming, de 3 à 12 joueurs, un téléphone chacun. Quatre univers (LoL, Smash, Pokémon, jeux vidéo), rôles spéciaux et votes en direct. Moteur de jeu testé côté serveur.",
+      en: "The Undercover party game, gaming edition: 3 to 12 players, one phone each. Four themes (LoL, Smash, Pokémon, video games), special roles and live voting. Server-side tested game engine.",
+    },
     tags: ["TypeScript", "React", "Socket.io", "Express", "Tests"],
     url: "https://github.com/Ssnakyx/Undercover",
     demo: "https://undercover-xi-five.vercel.app",
@@ -20,10 +24,13 @@ const PROJECTS = [
     id: "alternance-bot",
     badge: "02",
     title: "ALTERNANCE BOT",
-    subtitle: "Outil IA / Dashboard",
+    subtitle: { fr: "Outil IA / Dashboard", en: "AI tool / Dashboard" },
     lang: "TS",
-    description: "Récupère chaque matin les offres d'alternance, les note selon le CV grâce à l'IA et prépare lettre, CV adapté et email. Tableau de bord de suivi des candidatures. Rien n'est envoyé sans validation.",
-    tags: ["TypeScript", "IA / LLM", "Dashboard", "Automatisation"],
+    description: {
+      fr: "Récupère chaque matin les offres d'alternance, les note selon le CV grâce à l'IA et prépare lettre, CV adapté et email. Tableau de bord de suivi des candidatures. Rien n'est envoyé sans validation.",
+      en: "Fetches work-study job offers every morning, scores them against my resume with AI and prepares a cover letter, tailored resume and email. Dashboard to track applications. Nothing is sent without approval.",
+    },
+    tags: ["TypeScript", { fr: "IA / LLM", en: "AI / LLM" }, "Dashboard", { fr: "Automatisation", en: "Automation" }],
     url: "https://github.com/Ssnakyx/Alternance-Bot",
     demo: "https://alternance-bot.vercel.app",
   },
@@ -31,9 +38,12 @@ const PROJECTS = [
     id: "eclipse",
     badge: "03",
     title: "ECLIPSE",
-    subtitle: "Clicker narratif pixel art",
+    subtitle: { fr: "Clicker narratif pixel art", en: "Pixel art story clicker" },
     lang: "VUE",
-    description: "Idle game narratif en pixel art : quatre chapitres de l'Aube à la Nuit, améliorations, synergies, thèmes et musique qui évoluent avec la progression. Sauvegarde automatique et CI.",
+    description: {
+      fr: "Idle game narratif en pixel art : quatre chapitres de l'Aube à la Nuit, améliorations, synergies, thèmes et musique qui évoluent avec la progression. Sauvegarde automatique et CI.",
+      en: "Story-driven pixel art idle game: four chapters from Dawn to Night, upgrades, synergies, and themes and music that evolve as you progress. Autosave and CI.",
+    },
     tags: ["Vue 3", "TypeScript", "Pinia", "Tailwind", "CI"],
     url: "https://github.com/Ssnakyx/Clicker",
   },
@@ -43,17 +53,23 @@ const PROJECTS = [
     title: "OSU! REPLAY VIEWER",
     subtitle: "Python / Web + Desktop",
     lang: "PY",
-    description: "Lecteur de replays osu! dans le navigateur ou en fenêtre native. On dépose un ou deux .osr, la beatmap est téléchargée automatiquement, avec score, précision, combo, skins et comparaison de deux joueurs.",
-    tags: ["Python", "Pygame", "Web", "Parsing binaire"],
+    description: {
+      fr: "Lecteur de replays osu! dans le navigateur ou en fenêtre native. On dépose un ou deux .osr, la beatmap est téléchargée automatiquement, avec score, précision, combo, skins et comparaison de deux joueurs.",
+      en: "osu! replay player in the browser or a native window. Drop one or two .osr files and the beatmap downloads automatically, with score, accuracy, combo, skins and a two-player comparison.",
+    },
+    tags: ["Python", "Pygame", "Web", { fr: "Parsing binaire", en: "Binary parsing" }],
     url: "https://github.com/Ssnakyx/OsuProjects",
   },
   {
     id: "aliamnt",
     badge: "05",
     title: "ALIAMNT",
-    subtitle: "Site d'ONG santé",
+    subtitle: { fr: "Site d'ONG santé", en: "Health NGO website" },
     lang: "VUE",
-    description: "Site d'une ONG (démo) de jeunes d'Afrique de l'Ouest engagés contre les maladies non transmissibles : campagnes, antennes, actions de prévention. Entièrement en français, déployé sur Vercel.",
+    description: {
+      fr: "Site d'une ONG (démo) de jeunes d'Afrique de l'Ouest engagés contre les maladies non transmissibles : campagnes, antennes, actions de prévention. Entièrement en français, déployé sur Vercel.",
+      en: "Website for a (demo) NGO of young West Africans fighting non-communicable diseases: campaigns, local branches, prevention work. Fully in French, deployed on Vercel.",
+    },
     tags: ["Vue", "Vite", "Responsive", "Tests"],
     url: "https://github.com/Ssnakyx/aliamnt",
     demo: "https://aliamnt.vercel.app",
@@ -64,8 +80,11 @@ const PROJECTS = [
     title: "MINI-GAMES ONLINE",
     subtitle: "Go / WebSocket",
     lang: "GO",
-    description: "Plateforme de mini-jeux multijoueurs en temps réel : morpion, puissance 4, pendu, dots & boxes. Salles avec code, hôte/invité, reconnexion automatique.",
-    tags: ["Go", "WebSocket", "JavaScript", "Temps réel"],
+    description: {
+      fr: "Plateforme de mini-jeux multijoueurs en temps réel : morpion, puissance 4, pendu, dots & boxes. Salles avec code, hôte/invité, reconnexion automatique.",
+      en: "Real-time multiplayer mini-games platform: tic-tac-toe, connect four, hangman, dots & boxes. Rooms with join codes, host/guest, automatic reconnection.",
+    },
+    tags: ["Go", "WebSocket", "JavaScript", { fr: "Temps réel", en: "Real-time" }],
     url: "https://github.com/Ssnakyx/DEV",
   },
   {
@@ -74,7 +93,10 @@ const PROJECTS = [
     title: "LOL DASHBOARD",
     subtitle: "Nuxt 4 / TypeScript",
     lang: "TS",
-    description: "Tableau de bord League of Legends : exploration et comparaison de champions, statistiques, profil d'invocateur, authentification et interface bilingue FR / EN.",
+    description: {
+      fr: "Tableau de bord League of Legends : exploration et comparaison de champions, statistiques, profil d'invocateur, authentification et interface bilingue FR / EN.",
+      en: "League of Legends dashboard: browse and compare champions, stats, summoner profile, authentication and a bilingual FR / EN interface.",
+    },
     tags: ["Nuxt 4", "Nuxt UI", "TypeScript", "i18n"],
     url: "https://github.com/Ssnakyx/LolDashboard",
   },
@@ -82,10 +104,13 @@ const PROJECTS = [
     id: "challenge48h",
     badge: "08",
     title: "CHALLENGE 48H",
-    subtitle: "PHP / Travail d'équipe",
+    subtitle: { fr: "PHP / Travail d'équipe", en: "PHP / Teamwork" },
     lang: "PHP",
-    description: "Application web complète réalisée en 48h en groupe dans le cadre d'un challenge étudiant. Conception, développement et livraison sous contrainte de temps.",
-    tags: ["PHP", "HTML", "CSS", "Équipe"],
+    description: {
+      fr: "Application web complète réalisée en 48h en groupe dans le cadre d'un challenge étudiant. Conception, développement et livraison sous contrainte de temps.",
+      en: "Full web application built in 48 hours as a team for a student challenge. Design, development and delivery under time pressure.",
+    },
+    tags: ["PHP", "HTML", "CSS", { fr: "Équipe", en: "Team" }],
     url: "https://github.com/Ssnakyx/Challenge48h-G9",
   },
   // Version Discord : le dépôt PokeHamed contient le prénom, il est retiré du build.
@@ -94,10 +119,13 @@ const PROJECTS = [
     id: "pokehamed",
     badge: "09",
     title: "POKEHAMED",
-    subtitle: "C# / Jeu au tour par tour",
+    subtitle: { fr: "C# / Jeu au tour par tour", en: "C# / Turn-based game" },
     lang: "C#",
-    description: "Jeu inspiré de Pokémon en C# : combats au tour par tour, collection de créatures, statistiques et progression du joueur.",
-    tags: ["C#", ".NET", "POO", "Game Dev"],
+    description: {
+      fr: "Jeu inspiré de Pokémon en C# : combats au tour par tour, collection de créatures, statistiques et progression du joueur.",
+      en: "Pokémon-inspired game in C#: turn-based battles, creature collecting, stats and player progression.",
+    },
+    tags: ["C#", ".NET", { fr: "POO", en: "OOP" }, "Game Dev"],
     url: "https://github.com/Ssnakyx/PokeHamed",
   },
 ]),
@@ -106,6 +134,7 @@ const PROJECTS = [
 export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS", linkLabel = "GITHUB" }) {
   const PROJECTS = projects;
   const navigate = useNavigate();
+  const { t } = useLang();
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [tapped, setTapped] = useState(0);
@@ -623,7 +652,7 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
                   <div className="sp-lang-badge">{proj.lang}</div>
                 </div>
                 <div className="sp-subtitle-bar">
-                  <div className="sp-subtitle">{proj.subtitle}</div>
+                  <div className="sp-subtitle">{t(proj.subtitle)}</div>
                 </div>
               </div>
             </div>
@@ -640,21 +669,21 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
 
           <div className="sp-detail-desc">
             <div className="sp-detail-desc-label">DESCRIPTION</div>
-            <div className="sp-detail-desc-text">{proj.description}</div>
+            <div className="sp-detail-desc-text">{t(proj.description)}</div>
           </div>
 
-          <div className="sp-detail-desc-label sp-tags-label">OUTILS</div>
+          <div className="sp-detail-desc-label sp-tags-label">{t({ fr: "OUTILS", en: "TOOLS" })}</div>
           <div className="sp-detail-tags">
             {proj.tags.map((tag) => (
-              <span className="sp-tag" key={tag}>{tag}</span>
+              <span className="sp-tag" key={t(tag)}>{t(tag)}</span>
             ))}
           </div>
 
           {proj.skills && (
             <div className="sp-detail-desc">
-              <div className="sp-detail-desc-label">COMPÉTENCES</div>
+              <div className="sp-detail-desc-label">{t({ fr: "COMPÉTENCES", en: "SKILLS" })}</div>
               {proj.skills.map((skill) => (
-                <div className="sp-detail-skill" key={skill}>— {skill}</div>
+                <div className="sp-detail-skill" key={t(skill)}>— {t(skill)}</div>
               ))}
             </div>
           )}
@@ -662,7 +691,7 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
           {(proj.demo || proj.url) && <div className="sp-detail-github">
             {proj.demo && (
               <a className="sp-github-btn" href={proj.demo} target="_blank" rel="noopener noreferrer">
-                {proj.demoLabel ?? "VOIR LA DÉMO"} →
+                {t(proj.demoLabel ?? { fr: "VOIR LA DÉMO", en: "VIEW DEMO" })} →
               </a>
             )}
             {proj.url ? (

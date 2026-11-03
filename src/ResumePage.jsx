@@ -2,81 +2,83 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
 import { IS_DISCORD } from "./privacy";
+import { useLang } from "./i18n";
 
 const ITEMS = [
-  { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: "Master 1 Dév. Full-Stack / Ynov", rank: 4 },
-  { id: "ii",  badge: "II",  title: "SKILLS",     subtitle: "Web / Temps réel / Game dev",  rank: 5 },
-  { id: "iii", badge: "III", title: "PROJECTS",   subtitle: "Sélection GitHub",             rank: 5 },
-  { id: "iv",  badge: "IV",  title: "EXPERIENCE", subtitle: "Projets / Alternance",         rank: 3 },
+  { id: "i",   badge: "I",   title: "EDUCATION",  subtitle: { fr: "Master 1 Dév. Full-Stack / Ynov", en: "Master 1 Full-Stack Dev / Ynov" }, rank: 4 },
+  { id: "ii",  badge: "II",  title: "SKILLS",     subtitle: { fr: "Web / Temps réel / Game dev", en: "Web / Real-time / Game dev" },  rank: 5 },
+  { id: "iii", badge: "III", title: "PROJECTS",   subtitle: { fr: "Sélection GitHub", en: "GitHub picks" },             rank: 5 },
+  { id: "iv",  badge: "IV",  title: "EXPERIENCE", subtitle: { fr: "Projets / Alternance", en: "Projects / Work-study" },         rank: 3 },
 ];
 
 const PANELS = [
   {
     topIndex: "01", topTitle: "EDUCATION LOG", topRight: "M1",
     rows: [
-      { index: "01", title: "Master 1 Full-Stack",   status: "En cours" },
-      { index: "02", title: "Bachelor Informatique", status: "Validé" },
-      { index: "03", title: "DevOps / CI-CD",        status: "Validé" },
-      { index: "04", title: "Méthodes agiles",       status: "Validé" },
+      { index: "01", title: "Master 1 Full-Stack",   status: { fr: "En cours", en: "In progress" } },
+      { index: "02", title: { fr: "Bachelor Informatique", en: "Bachelor in Computer Science" }, status: { fr: "Validé", en: "Completed" } },
+      { index: "03", title: "DevOps / CI-CD",        status: { fr: "Validé", en: "Completed" } },
+      { index: "04", title: { fr: "Méthodes agiles", en: "Agile methods" },       status: { fr: "Validé", en: "Completed" } },
     ],
     bottomTitle: "DETAILS",
     bullets: [
-      "- Étudiant en Master 1 développement full-stack.",
-      "- Projets de groupe (Kivro, fil rouge, TechBoard) et projets perso en parallèle.",
-      "- À la recherche d'une alternance en développement (Lyon / télétravail).",
+      { fr: "- Étudiant en Master 1 développement full-stack.", en: "- Master 1 student in full-stack development." },
+      { fr: "- Projets de groupe (Kivro, fil rouge, TechBoard) et projets perso en parallèle.", en: "- Group projects (Kivro, capstone, TechBoard) alongside personal projects." },
+      { fr: "- À la recherche d'une alternance en développement (Lyon / télétravail).", en: "- Looking for a work-study position in development (Lyon / remote)." },
     ],
   },
   {
     topIndex: "02", topTitle: "SKILLS LOG", topRight: "5/5",
     rows: [
-      { index: "01", title: "Frontend",     status: "Avancé" },
-      { index: "02", title: "Backend",      status: "Solide" },
-      { index: "03", title: "Temps réel",   status: "Solide" },
+      { index: "01", title: "Frontend",     status: { fr: "Avancé", en: "Advanced" } },
+      { index: "02", title: "Backend",      status: { fr: "Solide", en: "Solid" } },
+      { index: "03", title: { fr: "Temps réel", en: "Real-time" },   status: { fr: "Solide", en: "Solid" } },
       { index: "04", title: "Game dev",     status: "Passion" },
-      { index: "05", title: "IA & outils",  status: "Quotidien" },
+      { index: "05", title: { fr: "IA & outils", en: "AI & tools" },  status: { fr: "Quotidien", en: "Daily" } },
     ],
     bottomTitle: "STACK",
     bullets: [
-      "- Front : TypeScript, React, Vue 3, Nuxt, Pinia, Tailwind, Vite, Framer Motion.",
-      "- Back : Node.js, Express, Socket.io, Go, PHP, Python, SQLite / MySQL.",
-      "- Jeux : Roblox (Luau, Rojo), Godot, C#, Pygame.",
-      "- Outils : Git, GitHub Actions, tests automatisés, Vercel, Claude Code, API LLM.",
+      { fr: "- Front : TypeScript, React, Vue 3, Nuxt, Pinia, Tailwind, Vite, Framer Motion.", en: "- Front: TypeScript, React, Vue 3, Nuxt, Pinia, Tailwind, Vite, Framer Motion." },
+      { fr: "- Back : Node.js, Express, Socket.io, Go, PHP, Python, SQLite / MySQL.", en: "- Back: Node.js, Express, Socket.io, Go, PHP, Python, SQLite / MySQL." },
+      { fr: "- Jeux : Roblox (Luau, Rojo), Godot, C#, Pygame.", en: "- Games: Roblox (Luau, Rojo), Godot, C#, Pygame." },
+      { fr: "- Outils : Git, GitHub Actions, tests automatisés, Vercel, Claude Code, API LLM.", en: "- Tools: Git, GitHub Actions, automated tests, Vercel, Claude Code, LLM APIs." },
     ],
   },
   {
     topIndex: "03", topTitle: "PROJECTS LOG", topRight: "TOP",
     rows: [
       { index: "01", title: "Undercover",       status: "TS / Socket.io" },
-      { index: "02", title: "Alternance Bot",   status: "TS / IA" },
+      { index: "02", title: "Alternance Bot",   status: { fr: "TS / IA", en: "TS / AI" } },
       { index: "03", title: "Eclipse Clicker",  status: "Vue 3" },
       { index: "04", title: "osu! Replay",      status: "Python" },
       { index: "05", title: "Eggs & Pet Fusion", status: "Roblox" },
     ],
     bottomTitle: "INFO",
     bullets: [
-      "- Détails et liens dans SIDE PROJECTS et ROBLOX GAMES.",
-      "- Projets variés : jeux multijoueurs, outils IA, sites, bots.",
-      "- Code disponible sur GitHub @Ssnakyx.",
+      { fr: "- Détails et liens dans SIDE PROJECTS et ROBLOX GAMES.", en: "- Details and links in SIDE PROJECTS and ROBLOX GAMES." },
+      { fr: "- Projets variés : jeux multijoueurs, outils IA, sites, bots.", en: "- Varied projects: multiplayer games, AI tools, websites, bots." },
+      { fr: "- Code disponible sur GitHub @Ssnakyx.", en: "- Code available on GitHub @Ssnakyx." },
     ],
   },
   {
     topIndex: "04", topTitle: "EXPERIENCE LOG", topRight: "→",
     rows: [
-      { index: "01", title: "Projets clients école", status: "Équipe" },
-      { index: "02", title: "Jeux Roblox",           status: "En cours" },
-      { index: "03", title: "Projets personnels",    status: "Ongoing" },
+      { index: "01", title: { fr: "Projets clients école", en: "School client projects" }, status: { fr: "Équipe", en: "Team" } },
+      { index: "02", title: { fr: "Jeux Roblox", en: "Roblox games" },           status: { fr: "En cours", en: "In progress" } },
+      { index: "03", title: { fr: "Projets personnels", en: "Personal projects" },    status: { fr: "En continu", en: "Ongoing" } },
     ],
-    bottomTitle: "DISPONIBILITÉ",
+    bottomTitle: { fr: "DISPONIBILITÉ", en: "AVAILABILITY" },
     bullets: [
-      "- Ouvert à l'alternance et aux stages en développement.",
-      "- Habitué à livrer vite : tests, CI et déploiement sur chaque projet.",
-      IS_DISCORD ? "- Contact : Ssnakyx sur Discord ou GitHub." : "- Contact : hamed0405n@gmail.com.",
+      { fr: "- Ouvert à l'alternance et aux stages en développement.", en: "- Open to work-study and internships in development." },
+      { fr: "- Habitué à livrer vite : tests, CI et déploiement sur chaque projet.", en: "- Used to shipping fast: tests, CI and deployment on every project." },
+      IS_DISCORD ? { fr: "- Contact : Ssnakyx sur Discord ou GitHub.", en: "- Contact: Ssnakyx on Discord or GitHub." } : { fr: "- Contact : hamed0405n@gmail.com.", en: "- Contact: hamed0405n@gmail.com." },
     ],
   },
 ];
 
 export default function ResumePage({ src }) {
   const navigate = useNavigate();
+  const { t } = useLang();
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -521,7 +523,7 @@ export default function ResumePage({ src }) {
                   </div>
                 </div>
                 <div className="resume-subtitle-bar">
-                  <div className="resume-subtitle">{item.subtitle}</div>
+                  <div className="resume-subtitle">{t(item.subtitle)}</div>
                 </div>
               </div>
             </div>
@@ -541,16 +543,16 @@ export default function ResumePage({ src }) {
                 {p.rows.map((row) => (
                   <div className="resume-detail-row" key={row.index}>
                     <div className="resume-detail-row-index">{row.index}</div>
-                    <div className="resume-detail-row-title">{row.title}</div>
-                    <div className="resume-detail-status">{row.status}</div>
+                    <div className="resume-detail-row-title">{t(row.title)}</div>
+                    <div className="resume-detail-status">{t(row.status)}</div>
                   </div>
                 ))}
               </div>
               <div className="resume-detail-bottom">
-                <div className="resume-detail-bottom-title">{p.bottomTitle}</div>
+                <div className="resume-detail-bottom-title">{t(p.bottomTitle)}</div>
                 <div className="resume-detail-bullets">
                   {p.bullets.map((b, i) => (
-                    <div className="resume-detail-bullet" key={i}>{b}</div>
+                    <div className="resume-detail-bullet" key={i}>{t(b)}</div>
                   ))}
                 </div>
               </div>

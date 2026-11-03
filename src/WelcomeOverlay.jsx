@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLang } from './i18n';
 
 const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none), (max-width: 768px)').matches;
 
@@ -9,6 +10,7 @@ const alreadySeen = () => {
 export default function WelcomeOverlay() {
   const [visible, setVisible] = useState(() => !alreadySeen());
   const [fading, setFading] = useState(false);
+  const { t } = useLang();
 
   const dismiss = () => {
     if (fading) return;
@@ -146,15 +148,15 @@ export default function WelcomeOverlay() {
             <div className="wo-section">
               <div className="wo-row">
                 <span className="wo-key">TAP</span>
-                <span>SELECT / OPEN</span>
+                <span>{t({ fr: "SÉLECTIONNER / OUVRIR", en: "SELECT / OPEN" })}</span>
               </div>
               <div className="wo-row">
                 <span className="wo-key">BACK</span>
-                <span>RETOUR AU MENU</span>
+                <span>{t({ fr: "RETOUR AU MENU", en: "BACK TO MENU" })}</span>
               </div>
               <div className="wo-row">
                 <span className="wo-key">SCROLL</span>
-                <span>VOIR LA SUITE</span>
+                <span>{t({ fr: "VOIR LA SUITE", en: "SEE MORE" })}</span>
               </div>
             </div>
           ) : (
@@ -162,31 +164,31 @@ export default function WelcomeOverlay() {
               <div className="wo-section">
                 <div className="wo-row">
                   <span className="wo-key">CLICK</span>
-                  <span>SELECT / OPEN</span>
+                  <span>{t({ fr: "SÉLECTIONNER / OUVRIR", en: "SELECT / OPEN" })}</span>
                 </div>
                 <div className="wo-row">
                   <span className="wo-key">◄ BACK</span>
-                  <span>RETOUR AU MENU</span>
+                  <span>{t({ fr: "RETOUR AU MENU", en: "BACK TO MENU" })}</span>
                 </div>
                 <div className="wo-row">
                   <span className="wo-key">✕ CLOSE</span>
-                  <span>FERMER UN PANNEAU</span>
+                  <span>{t({ fr: "FERMER UN PANNEAU", en: "CLOSE A PANEL" })}</span>
                 </div>
               </div>
               <div className="wo-section">
                 <div className="wo-row">
                   <span className="wo-key">↑↓ ↵</span>
-                  <span>CLAVIER (OPTIONNEL)</span>
+                  <span>{t({ fr: "CLAVIER (OPTIONNEL)", en: "KEYBOARD (OPTIONAL)" })}</span>
                 </div>
                 <div className="wo-row">
                   <span className="wo-key">ESC</span>
-                  <span>FERMER / RETOUR</span>
+                  <span>{t({ fr: "FERMER / RETOUR", en: "CLOSE / BACK" })}</span>
                 </div>
               </div>
             </>
           )}
 
-          <div className="wo-dismiss">{isTouch ? 'TAP TO START' : 'CLICK TO START'}</div>
+          <div className="wo-dismiss">{isTouch ? t({ fr: "TOUCHE POUR COMMENCER", en: "TAP TO START" }) : t({ fr: "CLIQUE POUR COMMENCER", en: "CLICK TO START" })}</div>
         </div>
       </div>
     </>

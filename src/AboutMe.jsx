@@ -12,6 +12,7 @@ import mainm from "./assets/mainm.jpeg";
 import mainm2 from "./assets/mainm2.jpeg";
 import mainf from "./assets/mainf.jpeg";
 import { IS_DISCORD } from "./privacy";
+import { useLang } from "./i18n";
 
 const CHARS = [char1, char2, char3];
 const MAIN_IMAGES = [mainm, mainm2, mainf];
@@ -19,26 +20,26 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 const REVEAL_CONTENT = [
   {
     upper: [
-      IS_DISCORD ? "pseudo : ssnakyx" : "nom : hamed kaffa",
-      "âge : 23 ans",
-      "formation : master 1 développement full-stack",
-      "statut : cherche une alternance (lyon / remote)",
+      IS_DISCORD ? { fr: "pseudo : ssnakyx", en: "handle: ssnakyx" } : { fr: "nom : hamed kaffa", en: "name: hamed kaffa" },
+      { fr: "âge : 23 ans", en: "age: 23" },
+      { fr: "formation : master 1 développement full-stack", en: "studies: master 1 full-stack development" },
+      { fr: "statut : cherche une alternance (lyon / remote)", en: "status: looking for a work-study (lyon / remote)" },
     ],
     lower: "dev full-stack & game dev",
   },
   {
     upper: [
-      "je crée des jeux multijoueurs, des outils et des sites.",
-      "web : typescript, react, vue, node. jeux : roblox, godot.",
-      "chaque projet : tests, ci et version en ligne.",
+      { fr: "je crée des jeux multijoueurs, des outils et des sites.", en: "i build multiplayer games, tools and websites." },
+      { fr: "web : typescript, react, vue, node. jeux : roblox, godot.", en: "web: typescript, react, vue, node. games: roblox, godot." },
+      { fr: "chaque projet : tests, ci et version en ligne.", en: "every project: tests, ci and a live version." },
     ],
     lower: IS_DISCORD ? "github.com/ssnakyx" : "hamed0405n@gmail.com",
   },
   {
     upper: [
-      "j'ai codé un bot qui cherche mon alternance à ma place.",
-      "3 heures sur une animation css que personne ne remarque.",
-      "ce portfolio est inspiré de persona 3 reload.",
+      { fr: "j'ai codé un bot qui cherche mon alternance à ma place.", en: "i coded a bot that hunts for my work-study for me." },
+      { fr: "3 heures sur une animation css que personne ne remarque.", en: "3 hours on a css animation nobody notices." },
+      { fr: "ce portfolio est inspiré de persona 3 reload.", en: "this portfolio is inspired by persona 3 reload." },
     ],
     lower: "fun facts",
   },
@@ -82,6 +83,7 @@ export default function AboutMe() {
   const [mounted, setMounted] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const navigate = useNavigate();
+  const { t } = useLang();
 
   const isMobileViewport =
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
@@ -127,7 +129,7 @@ export default function AboutMe() {
         <div key={`panel-${active}`} className={`sc-reveal-panel${mounted ? " mounted" : ""}`}>
           <div className="sc-reveal-upper-bar">
             {REVEAL_CONTENT[active].upper.map((line) => (
-              <div className="sc-reveal-upper-line" key={line}>{line}</div>
+              <div className="sc-reveal-upper-line" key={t(line)}>{t(line)}</div>
             ))}
           </div>
           <div className="sc-reveal-lower-bar">{REVEAL_CONTENT[active].lower}</div>
@@ -138,7 +140,7 @@ export default function AboutMe() {
           <button
             type="button"
             className="sc-nav-click"
-            aria-label="Précédent"
+            aria-label={t({ fr: "Précédent", en: "Previous" })}
             onClick={() => setActive(i => (i + ITEMS.length - 1) % ITEMS.length)}
           >
             <span className="sc-nav-arrow left">◄</span>
@@ -148,7 +150,7 @@ export default function AboutMe() {
           <button
             type="button"
             className="sc-nav-click"
-            aria-label="Suivant"
+            aria-label={t({ fr: "Suivant", en: "Next" })}
             onClick={() => setActive(i => (i + 1) % ITEMS.length)}
           >
             <span className="sc-nav-btn">RB</span>

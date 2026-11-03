@@ -14,6 +14,7 @@ import SideProjPage from './SideProjPage'
 import RobloxPage from './RobloxPage'
 import CustomCursor from './CustomCursor'
 import WelcomeOverlay from './WelcomeOverlay'
+import LangToggle from './LangToggle'
 import './App.css'
 
 
@@ -60,6 +61,7 @@ export default function App() {
     <>
       <CustomCursor />
       <WelcomeOverlay />
+      <LangToggle />
       <AnimatedRoutes />
     </>
   );

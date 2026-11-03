@@ -9,6 +9,7 @@ import newsign from "./assets/newsign.png";
 import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
+import { IS_DISCORD } from "./privacy";
 
 
 const CHARS = [char1, char2, char3];
@@ -28,6 +29,8 @@ const ITEMS = [
       { tag: "STR",  value: "5+",  color: "#4078c0" },
     ],
   },
+  // Version Discord : LinkedIn et email contiennent le vrai nom, ils sont retirés du build.
+  ...(IS_DISCORD ? [] : [
   {
     id: "linkedin", label: "LINKEDIN", handle: "@hamed-kaffa", href: "https://www.linkedin.com/in/hamed-kaffa-98587032a/", icon: "🔗", barIcon: icon2, bars: 1, newBars: [0], counts: ["PROFILE"],
     links: ["linkedin.com/in/hamed-kaffa-98587032a/"],
@@ -44,6 +47,7 @@ const ITEMS = [
       { tag: "AVL", value: "YES",  color: "#ea4335" },
     ],
   },
+]),
 ];
 
 export default function Socials() {

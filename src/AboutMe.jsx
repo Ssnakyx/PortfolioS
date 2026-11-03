@@ -11,6 +11,7 @@ import icon3 from "./assets/icon3.png";
 import mainm from "./assets/mainm.jpeg";
 import mainm2 from "./assets/mainm2.jpeg";
 import mainf from "./assets/mainf.jpeg";
+import { IS_DISCORD } from "./privacy";
 
 const CHARS = [char1, char2, char3];
 const MAIN_IMAGES = [mainm, mainm2, mainf];
@@ -18,7 +19,7 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 const REVEAL_CONTENT = [
   {
     upper: [
-      "nom : hamed kaffa",
+      IS_DISCORD ? "pseudo : ssnakyx" : "nom : hamed kaffa",
       "âge : 23 ans",
       "formation : master 1 développement full-stack",
       "statut : cherche une alternance (lyon / remote)",
@@ -31,7 +32,7 @@ const REVEAL_CONTENT = [
       "web : typescript, react, vue, node. jeux : roblox, godot.",
       "chaque projet : tests, ci et version en ligne.",
     ],
-    lower: "hamed0405n@gmail.com",
+    lower: IS_DISCORD ? "github.com/ssnakyx" : "hamed0405n@gmail.com",
   },
   {
     upper: [
@@ -51,7 +52,7 @@ const ROLES = [
 
 const ITEMS = [
   {
-    id: "about", label: "ABOUT ME", handle: "@Ssnakyx", href: "https://github.com/Ssnakyx", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["HK"],
+    id: "about", label: "ABOUT ME", handle: "@Ssnakyx", href: "https://github.com/Ssnakyx", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: [IS_DISCORD ? "SNK" : "HK"],
     links: ["github.com/Ssnakyx"],
     stats: [
       { tag: "AGE", value: "23",  color: "#9147ff" },
@@ -59,16 +60,16 @@ const ITEMS = [
     ],
   },
   {
-    id: "story", label: "WHAT I DO", handle: "@hamed-kaffa", href: "https://www.linkedin.com/in/hamed-kaffa-98587032a/", icon: "💡", barIcon: icon2, bars: 3, newBars: [0], counts: ["Vue.js", "React", "Node"],
-    links: ["linkedin.com/in/hamed-kaffa-98587032a/", "github.com/Ssnakyx", "github.com/Ssnakyx?tab=repositories"],
+    id: "story", label: "WHAT I DO", handle: IS_DISCORD ? "@Ssnakyx" : "@hamed-kaffa", href: IS_DISCORD ? "https://github.com/Ssnakyx" : "https://www.linkedin.com/in/hamed-kaffa-98587032a/", icon: "💡", barIcon: icon2, bars: 3, newBars: [0], counts: ["Vue.js", "React", "Node"],
+    links: [IS_DISCORD ? "github.com/Ssnakyx/PortfolioS" : "linkedin.com/in/hamed-kaffa-98587032a/", "github.com/Ssnakyx", "github.com/Ssnakyx?tab=repositories"],
     stats: [
       { tag: "STK", value: "FS",   color: "#e1306c" },
       { tag: "YRS", value: "3+",   color: "#f77737" },
     ],
   },
   {
-    id: "funfact", label: "FUN FACTS", handle: "hamed0405n@gmail.com", href: "mailto:hamed0405n@gmail.com", icon: "🎯", barIcon: icon3, bars: 3, newBars: [0, 1], counts: ["150ms", "2sp", "dark"],
-    links: ["github.com/Ssnakyx", "linkedin.com/in/hamed-kaffa-98587032a/", "github.com/Ssnakyx?tab=repositories"],
+    id: "funfact", label: "FUN FACTS", handle: IS_DISCORD ? "@Ssnakyx" : "hamed0405n@gmail.com", href: IS_DISCORD ? "https://github.com/Ssnakyx" : "mailto:hamed0405n@gmail.com", icon: "🎯", barIcon: icon3, bars: 3, newBars: [0, 1], counts: ["150ms", "2sp", "dark"],
+    links: ["github.com/Ssnakyx", IS_DISCORD ? "github.com/Ssnakyx/PortfolioS" : "linkedin.com/in/hamed-kaffa-98587032a/", "github.com/Ssnakyx?tab=repositories"],
     stats: [
       { tag: "THM", value: "DRK", color: "#00f2ea" },
       { tag: "INT", value: "4+",  color: "#ff0050" },

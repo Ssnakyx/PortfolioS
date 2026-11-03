@@ -55,6 +55,40 @@ const GAMES = [
       { fr: "Modèles 3D faits main dans Blender", en: "Hand-made 3D models in Blender" },
     ],
   },
+  {
+    id: "shhh",
+    badge: "04",
+    title: "SHHH",
+    subtitle: { fr: "Jeu d'ambiance / Discrétion", en: "Atmospheric game / Stealth" },
+    lang: "LUAU",
+    description: {
+      fr: "Un jeu où le moindre bruit compte : avance discrètement, reste silencieux et ne te fais pas repérer.",
+      en: "A game where every sound matters: move quietly, stay silent and don't get caught.",
+    },
+    tags: ["Roblox Studio", "Luau", "Rojo"],
+    skills: [
+      { fr: "Gameplay basé sur le son et la discrétion", en: "Sound- and stealth-based gameplay" },
+      { fr: "Ambiance sonore et lumière", en: "Sound design and lighting" },
+      { fr: "Logique serveur et multijoueur", en: "Server logic and multiplayer" },
+    ],
+  },
+  {
+    id: "ylyndore",
+    badge: "05",
+    title: "YLYNDORE",
+    subtitle: { fr: "Aventure / Fantasy", en: "Adventure / Fantasy" },
+    lang: "LUAU",
+    description: {
+      fr: "Une aventure dans un monde fantasy à explorer, avec ses régions, ses quêtes et sa progression.",
+      en: "An adventure through a fantasy world to explore, with its own regions, quests and progression.",
+    },
+    tags: ["Roblox Studio", "Luau", "Rojo", "Blender"],
+    skills: [
+      { fr: "Conception d'un monde et de ses zones", en: "World and zone design" },
+      { fr: "Systèmes de quêtes et de progression", en: "Quest and progression systems" },
+      { fr: "Interface et sauvegardes", en: "UI and saves" },
+    ],
+  },
 ];
 
 export default function RobloxPage() {

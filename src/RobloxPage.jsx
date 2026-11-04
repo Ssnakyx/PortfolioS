@@ -1,8 +1,12 @@
 import SideProjPage from "./SideProjPage";
 
+const PLAY = { fr: "JOUER", en: "PLAY" };
+
 const GAMES = [
   {
     id: "eggs-pet-fusion",
+    demo: "https://www.roblox.com/games/87579584290024/Eggs-and-Pet-Fusion",
+    demoLabel: PLAY,
     badge: "01",
     title: "EGGS & PET FUSION",
     subtitle: { fr: "Simulateur de pets / Collection", en: "Pet simulator / Collection" },
@@ -21,6 +25,8 @@ const GAMES = [
   },
   {
     id: "candy-cloud-tycoon",
+    demo: "https://www.roblox.com/games/84166735049232/Sell-Candy-Tycoon",
+    demoLabel: PLAY,
     badge: "02",
     title: "CANDY CLOUD TYCOON",
     subtitle: { fr: "Tycoon / Gestion", en: "Tycoon / Management" },
@@ -39,6 +45,8 @@ const GAMES = [
   },
   {
     id: "dohi",
+    demo: "https://www.roblox.com/games/83320990194139/DOHI-Card-Game",
+    demoLabel: PLAY,
     badge: "03",
     title: "DOHI",
     subtitle: { fr: "Jeu de bluff multijoueur", en: "Multiplayer bluffing game" },
@@ -87,6 +95,25 @@ const GAMES = [
       { fr: "Conception d'un monde et de ses zones", en: "World and zone design" },
       { fr: "Systèmes de quêtes et de progression", en: "Quest and progression systems" },
       { fr: "Interface et sauvegardes", en: "UI and saves" },
+    ],
+  },
+  {
+    id: "anime-egg-simulator",
+    badge: "06",
+    demo: "https://www.roblox.com/games/135017929173149/Anime-egg-simulator",
+    demoLabel: PLAY,
+    title: "ANIME EGG SIMULATOR",
+    subtitle: { fr: "Simulateur d'œufs / Anime", en: "Egg simulator / Anime" },
+    lang: "LUAU",
+    description: {
+      fr: "Fais éclore des œufs pour collectionner des personnages inspirés de l'univers anime, et deviens plus fort au fil de ta collection.",
+      en: "Hatch eggs to collect anime-inspired characters and grow stronger as your collection expands.",
+    },
+    tags: ["Roblox Studio", "Luau", "Rojo"],
+    skills: [
+      { fr: "Système d'éclosion et de raretés", en: "Hatching and rarity system" },
+      { fr: "Progression et collection", en: "Progression and collection" },
+      { fr: "Sauvegardes DataStore", en: "DataStore saves" },
     ],
   },
 ];

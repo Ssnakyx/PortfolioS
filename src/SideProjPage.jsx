@@ -59,6 +59,7 @@ const PROJECTS = [
     },
     tags: ["Python", "Pygame", "Web", { fr: "Parsing binaire", en: "Binary parsing" }],
     url: "https://github.com/Ssnakyx/OsuProjects",
+    demo: "https://osuproject.netlify.app",
   },
   {
     id: "aliamnt",
@@ -155,7 +156,10 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
     const onKey = (e) => {
       if (e.key === "ArrowUp")    setActive((i) => Math.max(0, (i ?? 0) - 1));
       if (e.key === "ArrowDown")  setActive((i) => Math.min(PROJECTS.length - 1, (i ?? -1) + 1));
-      if (e.key === "Enter" && active !== null && PROJECTS[active].url) window.open(PROJECTS[active].url, "_blank");
+      if (e.key === "Enter" && active !== null) {
+        const link = PROJECTS[active].demo ?? PROJECTS[active].url;
+        if (link) window.open(link, "_blank", "noopener");
+      }
       if (e.key === "ArrowLeft")  navigate('/');
       if (e.key === "Escape" || e.key === "Backspace") navigate('/');
     };

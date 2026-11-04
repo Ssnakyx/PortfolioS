@@ -12,6 +12,7 @@ import Socials from './Socials'
 import AboutMe from './AboutMe'
 import SideProjPage from './SideProjPage'
 import RobloxPage from './RobloxPage'
+import GamePage from './GamePage'
 import CustomCursor from './CustomCursor'
 import WelcomeOverlay from './WelcomeOverlay'
 import LangToggle from './LangToggle'
@@ -50,6 +51,9 @@ function AnimatedRoutes() {
         } />
         <Route path="/roblox" element={
           <PageTransition><RobloxPage /></PageTransition>
+        } />
+        <Route path="/roblox/:gameId" element={
+          <PageTransition><GamePage /></PageTransition>
         } />
       </Routes>
     </AnimatePresence>

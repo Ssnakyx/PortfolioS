@@ -154,9 +154,11 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
 
   useEffect(() => {
     const onKey = (e) => {
+      if (e.key === "Enter" && e.target.closest?.("a, button")) return;
       if (e.key === "ArrowUp")    setActive((i) => Math.max(0, (i ?? 0) - 1));
       if (e.key === "ArrowDown")  setActive((i) => Math.min(PROJECTS.length - 1, (i ?? -1) + 1));
       if (e.key === "Enter" && active !== null) {
+        if (PROJECTS[active].page) return navigate(PROJECTS[active].page);
         const link = PROJECTS[active].demo ?? PROJECTS[active].url;
         if (link) window.open(link, "_blank", "noopener");
       }
@@ -645,7 +647,11 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
               className={`sp-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 45}ms` }}
               onMouseEnter={() => setActive(index)}
-              onClick={() => { setActive(index); setTapped((t) => t + 1); }}
+              onClick={() => {
+                if (proj.page) return navigate(proj.page);
+                setActive(index);
+                setTapped((t) => t + 1);
+              }}
             >
               <div className="sp-card">
                 <div className="sp-badge">
@@ -692,9 +698,14 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
             </div>
           )}
 
-          {(proj.demo || proj.url) && <div className="sp-detail-github">
+          {(proj.page || proj.demo || proj.url) && <div className="sp-detail-github">
+            {proj.page && (
+              <button className="sp-github-btn" type="button" onClick={() => navigate(proj.page)}>
+                {t({ fr: "VOIR LE JEU", en: "VIEW GAME" })} →
+              </button>
+            )}
             {proj.demo && (
-              <a className="sp-github-btn" href={proj.demo} target="_blank" rel="noopener noreferrer">
+              <a className={`sp-github-btn${proj.page ? " alt" : ""}`} href={proj.demo} target="_blank" rel="noopener noreferrer">
                 {t(proj.demoLabel ?? { fr: "VOIR LA DÉMO", en: "VIEW DEMO" })} →
               </a>
             )}
@@ -718,7 +729,12 @@ export default function SideProjPage({ projects = PROJECTS, heading = "PROJECTS"
         <button className="sp-mobile-btn" type="button" onClick={() => navigate('/')}>
           BACK
         </button>
-        {proj && (proj.demo || proj.url) && (
+        {proj?.page && (
+          <button className="sp-mobile-btn" type="button" onClick={() => navigate(proj.page)}>
+            OPEN
+          </button>
+        )}
+        {proj && !proj.page && (proj.demo || proj.url) && (
           <a
             className="sp-mobile-btn"
             href={proj.demo ?? proj.url}
